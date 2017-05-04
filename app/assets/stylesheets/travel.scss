@@ -51,3 +51,21 @@ a {
     }
   }
 }
+
+.modal-roadin  {
+  position: absolute;
+  top: 0;
+  right: -2000px;
+  height: 100vh;
+  background-color: #ffffff;
+  transition-duration: 0.3s;
+}
+
+.modal-roadin-open {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  background-color: #ffffff;
+  transition-duration: 0.3s;
+}

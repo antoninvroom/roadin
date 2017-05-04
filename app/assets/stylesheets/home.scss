@@ -1,0 +1,103 @@
+// variables
+$orange_roadin:         #f9886c;
+
+@mixin linear-gradient($deg, $begin, $end) {
+  background: -webkit-linear-gradient($deg, $begin, $end);
+  background: -o-linear-gradient($deg, $begin, $end);
+  background: -moz-linear-gradient($deg, $begin, $end);
+  background: linear-gradient($deg, $begin, $end);
+}
+
+// global
+.container-fluid { padding: 0; }
+
+.button-custom-roadin {
+  height: 50px;
+  width: 200px;
+  background-color: #ffffff;
+  color: $orange_roadin;
+  font-family: 'Montserrat-light';
+  border: none;
+  box-shadow: none;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+// scss code
+.banner-roadin {
+  @include linear-gradient(45deg, #ff7e5f, #feb47b);
+  width: 100%;
+  max-width: 100%;
+  height: 100vh;
+  .content-banner-roadin {
+    text-align: center;
+    width: 100%;
+    color: #ffffff;
+    padding-top: 200px;
+    .main-title-roadin {
+      font-family: 'Montserrat-bold';
+    }
+    p {
+      font-family: 'Montserrat-light';
+    }
+  }
+}
+
+.link-registration-roadin {
+  padding: 20px;
+  text-align: center;
+}
+
+.btn-facebook {
+  background-color: #3b5998;
+  color: #ffffff;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.btn-custom {
+  @include linear-gradient(90deg, #ff7e5f, #feb47b);
+  color: #ffffff;
+  width: 100%;
+}
+
+
+// sidebar menu
+  .user-menu-roadin {
+    text-align: center;
+    height: 100vh;
+    background-color: rgb(34, 34, 34);
+    padding: 20px;
+    .user-logo {
+      text-align: center;
+      padding-bottom: 30px;
+      .roadin-logo-user {
+        font-family: 'Montserrat-bold';
+        color: #ffffff;
+        font-size: 23px;
+        margin-bottom: 100px;
+      }
+    }
+    .header-roadin-user-infos {
+      text-align: center;
+      .roadin-pic {
+        border-radius: 50%;
+        display: block;
+        margin: 0 auto;
+      }
+      .user-name-roadin {
+        padding-top: 10px;
+        font-family: 'Montserrat-medium';
+        color: #ffffff;
+      }
+    }
+    .nav-user-roadin {
+      padding-top: 50px;
+      a {
+        width: 100%;
+        height: 50px;
+        display: block;
+        color: #ffffff;
+      }
+    }
+  }

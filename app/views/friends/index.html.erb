@@ -1,0 +1,7 @@
+<div class="container-fluid user-content-roadin">
+  <div class="col-md-10">
+      <% @friends.each do |friend| %>
+        <%= link_to friend.raw_attributes['name'], user_path(friend) %>
+      <% end %>
+  </div>
+</div>

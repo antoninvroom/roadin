@@ -1,0 +1,16 @@
+<div class="container-fluid user-container-roadin">
+  <!-- user content page -->
+  <div class="col-md-10 user-content-roadin">
+    <div class="introduce-user-roadin">
+      <h4> Hello <%= @user.name %>, this is your dashboard !  </h4>
+      <p> Currently you can create a trip, add some friends, and see all travels that we are created for you !  </p>
+    </div>
+    <br>
+    <h5> All your travels </h5>
+    <hr>
+    <% @travels.each do |travel| %>
+      <p> <%= link_to travel.title, travel_path(travel) %> </p>
+    <% end %>
+    <%= link_to 'Create a travel', new_travel_path ,class: 'btn btn-primary' %>
+  </div>
+</div>

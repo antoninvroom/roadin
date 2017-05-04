@@ -1,0 +1,16 @@
+<div class="container-fluid user-container-roadin">
+  <div class="col-md-10">
+    <h5> Create a travel </h5>
+    <%= form_for @travel, html: { class: 'form-horizontal' } do |f| %>
+      <%= f.label :title %>
+      <%= f.text_field :title, class: 'form-control' %>
+      <%= f.label :description %>
+      <%= f.text_area :description, class: 'form-control' %>
+      <%= f.label :begin_date %>
+      <%= f.text_area :begin_date, class: 'form-control' %>
+      <%= f.label :end_date %>
+      <%= f.text_area :end_date, class: 'form-control' %>
+      <%= f.submit 'Publish', class: 'btn btn-primary' %>
+  <% end %>
+  </div>
+</div>

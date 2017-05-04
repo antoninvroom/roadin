@@ -1,0 +1,56 @@
+<div class="container-fluid user-container-roadin">
+  <div class="col-md-2">
+    <!-- header informations -->
+    <div class="header-describe-travel-roadin">
+      <h5> <%= @travel.title %> </h5>
+      <hr>
+      <p> <%= @travel.description %> </p>
+      <p class="travel-dates-roadin"> <%= @travel.begin_date %> - <%= @travel.end_date %></p>
+    </div>
+
+    <!-- different choices -->
+    <a href="#">
+      <div class="travel-choice" id="new_step_travel">
+        <h6> Choose a city / country</h6>
+        <h5> Add a step </h5>
+        <p> Just use the form and type a city or a country to find it. </p>
+      </div>
+    </a>
+
+    <a href="#">
+      <div class="travel-choice" id="new_step_travel">
+        <h6> See all your steps</h6>
+        <h5> Manage your steps </h5>
+        <p> delete or edit your trip run ! </p>
+      </div>
+    </a>
+
+    <a href="#">
+      <div class="travel-choice" id="new_step_travel">
+        <h6> Invite friends </h6>
+        <h5> Add friends to your projet </h5>
+        <p> Your facebook friends can participe to the creation of the trip ! </p>
+      </div>
+    </a>
+
+    <a href="#">
+      <div class="travel-choice" id="new_step_travel">
+        <h6> Your toolbox </h6>
+        <h5> Restaurant, notes, hostels .. </h5>
+        <p> Anote all things you need to know for the trip ! and share the good deal with people ! </p>
+      </div>
+    </a>
+
+    <a href="#">
+      <div class="travel-choice" id="new_step_travel">
+        <h6> Discover </h6>
+        <h5> What people loved around you ! </h5>
+        <p>  This is what people love near to your trip steps ! </p>
+      </div>
+    </a>
+
+  </div>
+  <div class="map col-md-8" id="map"></div>
+</div>
+
+<%= javascript_include_tag "mapbox.js"  %>

@@ -1,0 +1,36 @@
+a:hover {
+  text-decoration: none;
+}
+
+.main-wrapper {
+  position: relative;
+}
+
+.header-roadin {
+  height: 70px;
+  line-height: 70px;
+  background-color: rgba(0, 0, 0, 0);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  .logo-roadin {
+    float: left;
+    font-family: 'Montserrat-bold';
+    margin-left: 20px;
+    color: #ffffff;
+    font-size:23px;
+  }
+  .roadin-navigation {
+    float: right;
+    a {
+      font-family: 'Montserrat-light';
+      margin-right: 20px;
+      color: #ffffff;
+    }
+  }
+}
+
+.profile-picture {
+  border-radius: 50%;
+}

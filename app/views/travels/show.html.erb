@@ -9,7 +9,7 @@
     </div>
 
     <!-- different choices -->
-    <a href="javascript:void(0)" id="open_modal">
+    <a href="javascript:void(0)" id="city_country"  class="click-method-1">
       <div class="travel-choice" id="new_step_travel">
         <h6> Choose a city / country</h6>
         <h5> Add a step </h5>
@@ -17,15 +17,15 @@
       </div>
     </a>
 
-    <a href="#">
-      <div class="travel-choice" id="new_step_travel">
+    <a href="javascript:void(0)" class="click-method-2">
+      <div class="travel-choice" id="new_step_travel" >
         <h6> See all your steps</h6>
         <h5> Manage your steps </h5>
         <p> delete or edit your trip run ! </p>
       </div>
     </a>
 
-    <a href="#">
+    <a href="javascript:void(0)" class="click-method-3">
       <div class="travel-choice" id="new_step_travel">
         <h6> Invite friends </h6>
         <h5> Add friends to your projet </h5>
@@ -33,7 +33,7 @@
       </div>
     </a>
 
-    <a href="#">
+    <a href="javascript:void(0)" class="click-method-4">
       <div class="travel-choice" id="new_step_travel">
         <h6> Your toolbox </h6>
         <h5> Restaurant, notes, hostels .. </h5>
@@ -41,7 +41,7 @@
       </div>
     </a>
 
-    <a href="#">
+    <a href="javascript:void(0)" class="click-method-5">
       <div class="travel-choice" id="new_step_travel">
         <h6> Discover </h6>
         <h5> What people loved around you ! </h5>
@@ -54,8 +54,9 @@
 
   <!-- modal custom for pages -->
 
-    <div class="modal-roadin col-md-8" id="modal_roadin">
-
+    <div class="modal-type-roadin modal-roadin col-md-8" id="modal_roadin">
+      <h3> Add a step to your trip ! <%= Emoji.find_by_alias("smiley").raw %></h3>
+      <%= render partial: 'steps/form_new_step' %>
     </div>
 </div>
 

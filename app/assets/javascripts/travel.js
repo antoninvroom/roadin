@@ -14,14 +14,13 @@ $(document).ready(function() {
 
     // modal
     function _getModal() {
-        $('#open_modal').click(function(e){
+        $('#city_country').click(function(e) {
             e.preventDefault();
-            $('#modal_roadin').toggleClass('modal-roadin-open');
+            $('#modal_roadin').toggleClass('modal-roadin-open')
         });
     }
 
-
     // call all functions
-    _initMap();
     _getModal();
+    _initMap();
 });

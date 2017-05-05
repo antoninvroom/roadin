@@ -1,0 +1,16 @@
+<%= form_for @travel, html: { class: 'form-horizontal' } do |f| %>
+    <%= f.fields_for :step do |builder| %>
+        <label> Country </label>
+        <%= builder.text_field :country, class: 'form-control' %>
+        <label> City </label>
+        <%= builder.text_field :city, class: 'form-control' %>
+        <label> Adress </label>
+        <%= builder.text_field :address, class: 'form-control' %>
+        <label> How many time you stay here ? </label>
+        <%= builder.text_field :time_to_stay, class: 'form-control' %>
+        <label> Describe your step </label>
+        <%= builder.text_field :step_description, class: 'form-control' %>
+        <br>
+        <%= builder.submit 'Go', class: 'btn btn-primary' %>
+    <% end %>
+<% end %>

@@ -1,16 +1,10 @@
-<%= form_for @travel, html: { class: 'form-horizontal' } do |f| %>
-    <%= f.fields_for :step do |builder| %>
-        <label> Country </label>
-        <%= builder.text_field :country, class: 'form-control' %>
-        <label> City </label>
-        <%= builder.text_field :city, class: 'form-control' %>
-        <label> Adress </label>
-        <%= builder.text_field :address, class: 'form-control' %>
-        <label> How many time you stay here ? </label>
-        <%= builder.text_field :time_to_stay, class: 'form-control' %>
-        <label> Describe your step </label>
-        <%= builder.text_field :step_description, class: 'form-control' %>
-        <br>
-        <%= builder.submit 'Go', class: 'btn btn-primary' %>
-    <% end %>
+<%= form_for [@travel, Step.new] do |f| %>
+    <label> Place to go </label>
+    <%= f.text_field :place, class: 'form-control', placeholder: 'e.g: France, United-States...', id: 'address-input' %>
+    <label> Time to stay </label>
+    <%= f.text_field :time_to_stay, class: 'form-control', placeholder: 'e.g: 1, 2 or 3' %>
+    <label> Description of the step </label>
+    <%= f.text_area :step_description, class: 'form-control', placeholder: 'What you will do during the step' %>
+    <br>
+    <%= f.submit 'Create', class: 'btn btn-primary' %>
 <% end %>

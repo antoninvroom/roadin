@@ -8,8 +8,8 @@ class Travel
   # fields
   field :title, type: String
   field :description, type: String
-  field :begin_date, type: String
-  field :end_date, type: String
+  field :begin_date, type: Date
+  field :end_date, type: Date
 
   # steps
   embeds_many :steps

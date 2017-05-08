@@ -6,19 +6,12 @@ class StepsController < ApplicationController
 
   def create
     @travel = Travel.find(params[:travel_id])
-    @step = Step.new(step_params)
-    if @step.save
-      puts 'its okay ! '
-      redirect_to user_path(current_user)
-    else
-      puts 'oh god something went wrong !'
-      @step.errors.full_messages
-      redirect_to travels_path(@step.travel)
-    end
+    @step = @travel.steps.create!(step_params)
+    redirect_to @travel, :notice => 'step created!'
   end
 
   private
   def step_params
-    params.require(:step).permit(:country, :city, :time_to_stay, :step_description)
+    params.require(:step).permit(:place, :time_to_stay, :step_description)
   end
 end

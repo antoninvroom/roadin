@@ -7,9 +7,9 @@
       <%= f.label :description %>
       <%= f.text_area :description, class: 'form-control' %>
       <%= f.label :begin_date %>
-      <%= f.text_area :begin_date, class: 'form-control' %>
+      <%= f.date_field :begin_date, class: 'form-control' %>
       <%= f.label :end_date %>
-      <%= f.text_area :end_date, class: 'form-control' %>
+      <%= f.date_field :end_date, class: 'form-control' %>
       <%= f.submit 'Publish', class: 'btn btn-primary' %>
   <% end %>
   </div>

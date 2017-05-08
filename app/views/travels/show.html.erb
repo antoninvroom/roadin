@@ -17,7 +17,7 @@
       </div>
     </a>
 
-    <a href="javascript:void(0)" class="click-method-2">
+    <a href="javascript:void(0)" class="click-method-2" id="manage_steps">
       <div class="travel-choice" id="new_step_travel" >
         <h6> See all your steps</h6>
         <h5> Manage your steps </h5>
@@ -54,10 +54,19 @@
 
   <!-- modal custom for pages -->
 
+    <!-- modal for create steps -->
     <div class="modal-type-roadin modal-roadin col-md-8" id="modal_roadin">
       <h3> Add a step to your trip ! <%= Emoji.find_by_alias("smiley").raw %></h3>
       <%= render partial: 'steps/form_new_step' %>
     </div>
+
+     <!-- modal for manage steps -->
+      <div class="modal-roadin col-md-8" id="modal_manage">
+        <h3> All steps </h3>
+        <% @steps.each do |step| %>
+            <p><%= step.step_name %> - <%= step.step_duration %></p>
+        <% end %>
+      </div>
 </div>
 
 <%= javascript_include_tag "mapbox.js"  %>

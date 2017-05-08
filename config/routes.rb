@@ -9,10 +9,10 @@ Rails.application.routes.draw do
   resources :friends, :only => [:index]
 
   # travels
-  resources :travels
-
-  # steps
-  resources :steps
+  resources :travels do
+    # steps
+    resources :steps
+  end
 
   # login
   get '/auth/:provider/callback' => 'sessions#create'

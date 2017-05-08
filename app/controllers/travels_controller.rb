@@ -22,18 +22,20 @@ class TravelsController < ApplicationController
     @steps = @travel.steps
     @geojson = Array.new
     @steps.each do |step|
-      @geojson << {
-          type: 'Feature',
-          geometry: {
-              type: 'Point',
-              coordinates: [step.coordinates[0], step.coordinates[1]]
-          },
-          properties: {
-              place: step.place,
-              :'marker-color' => '#00607d',
-              :'marker-symbol' => 'circle'
-          }
-      }
+      if !step.nil?
+        @geojson << {
+            type: 'Feature',
+            geometry: {
+                type: 'Point',
+                coordinates: [step.coordinates[0], step.coordinates[1]]
+            },
+            properties: {
+                place: step.place,
+                :'marker-color' => '#00607d',
+                :'marker-symbol' => 'circle'
+            }
+        }
+      end
     end
     respond_to do |format|
       format.html

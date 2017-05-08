@@ -72,8 +72,6 @@
 <%= javascript_include_tag "mapbox.js"  %>
 
 <script type="text/javascript" charset="utf-8">
-    $(document).ready(function() {
         var t_id = "<%= @travel.id %>";
         grabTravelData(t_id);
-    });
 </script>

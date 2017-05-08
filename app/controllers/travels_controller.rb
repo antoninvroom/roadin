@@ -21,17 +21,23 @@ class TravelsController < ApplicationController
     @step = Step.new
     @steps = @travel.steps
     @geojson = Array.new
-    build_geojson(@steps, @geojson)
-  end
-
-  respond_to do |format|
-    format.html
-    format.json { render json: @geojson }
-  end
-
-  def build_geojson(steps, geojson)
-    steps.each do |step|
-      geojson << GeojsonBuilder.build_step(step)
+    @steps.each do |step|
+      @geojson << {
+          type: 'Feature',
+          geometry: {
+              type: 'Point',
+              coordinates: [step.coordinates[0], step.coordinates[1]]
+          },
+          properties: {
+              place: step.place,
+              :'marker-color' => '#00607d',
+              :'marker-symbol' => 'circle'
+          }
+      }
+    end
+    respond_to do |format|
+      format.html
+      format.json { render json: @geojson }
     end
   end
 

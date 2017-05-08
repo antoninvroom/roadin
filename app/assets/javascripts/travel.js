@@ -1,51 +1,46 @@
 $(document).ready(function() {
 
+    function grabTravelData(travel_id) {
+        return '/' + travel_id + '/show.json';
+    }
+
     // map
     function _initMap() {
-        /* mapboxgl.accessToken = 'pk.eyJ1IjoiYW50b3RvIiwiYSI6ImNpdm15YmNwNTAwMDUyb3FwbzlzeWluZHcifQ.r44fcNU5pnX3-mYYM495Fw';
+        mapboxgl.accessToken = 'pk.eyJ1IjoiYW50b3RvIiwiYSI6ImNpdm15YmNwNTAwMDUyb3FwbzlzeWluZHcifQ.r44fcNU5pnX3-mYYM495Fw';
         var map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/mapbox/streets-v9',
             center: [-74.50, 40],
             zoom: 9
         });
-        map.addControl(new mapboxgl.NavigationControl()); */
+        map.addControl(new mapboxgl.NavigationControl());
 
         // second try with leaflet
 
-        L.mapbox.accessToken = 'pk.eyJ1IjoiYW50b3RvIiwiYSI6ImNpdm15YmNwNTAwMDUyb3FwbzlzeWluZHcifQ.r44fcNU5pnX3-mYYM495Fw';
-        var map = L.mapbox.map('map', 'mapbox://styles/mapbox/streets-v9').setView([39.739, -104.990], 12);
-        map.featureLayer.on('ready', function(e) {
-            getSteps(map);
-        });
+        /* L.mapbox.accessToken = 'pk.eyJ1IjoiYW50b3RvIiwiYSI6ImNpdm15YmNwNTAwMDUyb3FwbzlzeWluZHcifQ.r44fcNU5pnX3-mYYM495Fw';
+         var map = L.mapbox.map('map').setView([39.739, -104.990], 6);
+         var tile = 'https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYW50b3RvIiwiYSI6ImNpdm15YmNwNTAwMDUyb3FwbzlzeWluZHcifQ.r44fcNU5pnX3-mYYM495Fw';
+         L.tileLayer(tile).addTo(map);
+         map.featureLayer.on('ready', function(e) {
+         getSteps(map);
+         });*/
     }
 
-    function getSteps(map) {
+    function _getMarkers() {
         $.ajax({
-            dataType: 'text',
-            url: '/steps.json',
-            success: function(steps) {
-                var geojson = $.parseJSON(steps);
-                map.featureLayer.setGeoJSON({
-                    type: "FeatureCollection",
-                    features: geojson
-                });
-                addStepsPopups(map);
+            dataType: 'json',
+            url: grabTravelData(),
+            success: function(data) {
+                geojson = $.parseJSON(data);
+                console.log(data);
+                map.featureLayer.setGeoJSON(geojson);
             },
-            error: function() {
-                alert("Could not load the steps");
+            error: function(data) {
+                console.log(data + ' error');
             }
-        })
-    }
-
-    function addStepsPopups(map) {
-        map.featureLayer.on('layeradd', function(e) {
-           var marker = e.layer;
-           var properties = marker.feature.properties;
-           var popupContent = '<div class="marker-popup">' + '<h3>' + properties.place + '</h3>' + '</div>';
-           marker.bindPopup(popupContent, {closeButton: false, minWidth: 300});
         });
-    }
+    };
+
 
     // modal
     function _getModal() {
@@ -54,16 +49,17 @@ $(document).ready(function() {
             $('#modal_roadin').toggleClass('modal-roadin-open');
         });
         $('#manage_steps').click(function(e) {
-           e.preventDefault();
-           $('#modal_manage').toggleClass('modal-roadin-open');
+            e.preventDefault();
+            $('#modal_manage').toggleClass('modal-roadin-open');
         });
     }
 
     var placeAutocomplete = places({
-       container: document.querySelector('#address-input')
+        container: document.querySelector('#address-input')
     });
 
     // call all functions
     _getModal();
     _initMap();
+    _getMarkers();
 });

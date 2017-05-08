@@ -10,9 +10,10 @@ Rails.application.routes.draw do
 
   # travels
   resources :travels do
-    # steps
     resources :steps
   end
+
+  get 'show' => 'travels#show'
 
   # login
   get '/auth/:provider/callback' => 'sessions#create'

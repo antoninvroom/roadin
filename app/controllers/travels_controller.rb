@@ -31,6 +31,7 @@ class TravelsController < ApplicationController
             },
             properties: {
                 place: step.place,
+                time: step.time_to_stay
                 :'marker-color' => '#ff7e5f',
                 :'marker-symbol' => 'circle'
             }

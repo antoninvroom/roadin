@@ -31,7 +31,7 @@ class TravelsController < ApplicationController
             },
             properties: {
                 place: step.place,
-                :'marker-color' => '#00607d',
+                :'marker-color' => '#ff7e5f',
                 :'marker-symbol' => 'circle'
             }
         }

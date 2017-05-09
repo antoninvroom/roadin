@@ -30,7 +30,8 @@ $(document).ready(function() {
                 for(var i = 0; i < data.length; i++) {
                     ar.push(data[i].geometry.coordinates.reverse());
                 }
-                console.log(ar);
+                map.featureLayer.bindPopup('step n°');
+                console.log(data);
                 map.fitBounds(ar);
             },
             error: function(data) {

@@ -8,7 +8,7 @@ $(document).ready(function() {
 
     // token access for MAPBOX GL
     mapboxgl.accessToken = 'pk.eyJ1IjoiYW50b3RvIiwiYSI6ImNpdm15YmNwNTAwMDUyb3FwbzlzeWluZHcifQ.r44fcNU5pnX3-mYYM495Fw';
-    
+
     // generate map
     var map = new mapboxgl.Map({
       container: 'map',
@@ -57,14 +57,15 @@ $(document).ready(function() {
                 bounds.extend(feature.geometry.coordinates);
             });
             map.fitBounds(bounds);
+
             for(var i = 0; i < data.length; i++) {
                 var last = data.length - 1
                 var from = data[i];
                 var to = data[i + 1];
                 if(i != last) {
-                    apiCall(from.geometry.coordinates[0], from.geometry.coordinates[1], to.geometry.coordinates[0], to.geometry.coordinates[1], mapboxgl.accessToken)
+                    apiCall(from.geometry.coordinates[0], from.geometry.coordinates[1], to.geometry.coordinates[0], to.geometry.coordinates[1], mapboxgl.accessToken);
                 } else {
-                    apiCall(from.geometry.coordinates[0], from.geometry.coordinates[1], from.geometry.coordinates[0], from.geometry.coordinates[1], mapboxgl.accessToken)
+                    apiCall(from.geometry.coordinates[0], from.geometry.coordinates[1], from.geometry.coordinates[0], from.geometry.coordinates[1], mapboxgl.accessToken);
                 }
             }
         }, error: function(data) {
@@ -73,9 +74,36 @@ $(document).ready(function() {
     });
 
     function apiCall(from_one, from_two, to_one, to_two, token) {
-        var api_call = "https://api.mapbox.com/directions/v5/mapbox/driving/" + from_one + "," + from_two + ";" + to_one + "," + to_two + "?access_token=" + token;
-        console.log(api_call);
-    } 
+        var api_call = $.get("https://api.mapbox.com/directions/v5/mapbox/driving/" + from_one + "," + from_two + ";" + to_one + "," + to_two + "?access_token=" + token, function(data) {
+          map.on('load', function () {
+              map.addSource("route", {
+                  "type": "geojson",
+                  "data": {
+                      "type": "Feature",
+                      "properties": {},
+                      "geometry": {
+                          "type": "LineString",
+                          "coordinates": data.routes[0].geometry
+                      }
+                  }
+              });
+
+              map.addLayer({
+                  "id": "route",
+                  "type": "line",
+                  "source": "route",
+                  "layout": {
+                      "line-join": "round",
+                      "line-cap": "round"
+                  },
+                  "paint": {
+                      "line-color": "#888",
+                      "line-width": 8
+                  }
+              });
+          });
+        });
+    }
 
     // get modals
     function _getModal() {

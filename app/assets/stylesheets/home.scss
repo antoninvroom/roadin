@@ -23,6 +23,12 @@ $orange_roadin:         #f9886c;
   border-radius: 10px;
 }
 
+.btn-custom-roadin {
+  @include linear-gradient(45deg, #ff7e5f, #feb47b);
+  color: #ffffff;
+}
+
+
 // scss code
 .banner-roadin {
   @include linear-gradient(45deg, #ff7e5f, #feb47b);
@@ -64,6 +70,9 @@ $orange_roadin:         #f9886c;
 
 // sidebar menu
   .user-menu-roadin {
+    position: fixed;
+    top: 0;
+    left: 0;
     text-align: center;
     height: 100vh;
     background-color: rgb(34, 34, 34);

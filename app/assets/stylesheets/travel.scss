@@ -5,6 +5,10 @@
   right: 0;
 }
 
+h6, h1, h2, h3, h4, h5 {
+  font-family: 'Montserrat-medium';
+}
+
 .header-describe-travel-roadin {
   margin-top: 20px;
   background-color: #eeeeee;
@@ -83,11 +87,18 @@ a {
 }
 
 .step-manager-roadin-on-map {
-  background-color: rgba(34, 34, 34, 0.7);
-  height: 150px;
+  background-color: rgb(34, 34, 34);
+  border-radius: 10px;
+  height: 200px;
   position: fixed;
   bottom: 30px;
   right: 50px;
+  h4 {
+    color: #ffffff;
+    margin-left: 25px;
+    margin-top: 15px;
+    margin-bottom: 0px;
+  }
   .each-steps-instance {
     height: 100px;
     width: auto;
@@ -95,5 +106,9 @@ a {
     margin: 20px;
     padding: 15px;
     border-radius: 10px;
+    .step-manager-time {
+      font-size: 10px;
+      color: #777;
+    }
   }
 }

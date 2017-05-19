@@ -14,12 +14,18 @@ $(document).ready(function() {
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v10',
       center: [-96, 37.8],
-      zoom: 5
+      zoom: 4
     });
+
+    // display control
+    map.addControl(new mapboxgl.NavigationControl());
 
     // center map on selected marker
     map.on('click', 'markers', function (e) {
-        map.flyTo({center: e.features[0].geometry.coordinates});
+        map.flyTo({
+          center: e.features[0].geometry.coordinates,
+          zoom: 1
+        });
     });
 
     // change mouse action on enter / leave in marker
@@ -123,10 +129,10 @@ $(document).ready(function() {
 
     function _slickInit() {
       $('.data-steps').slick({
-        centerMode: true,
-        centerPadding: '60px',
+        infinite: true,
         slidesToShow: 3,
-        arrows: false,
+        slidesToScroll: 3,
+        arrows: false
       });
     }
 

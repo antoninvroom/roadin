@@ -1,5 +1,5 @@
 <!-- user sidebar -->
-<div class="col-md-2 user-menu-roadin">
+<div class="col-md-1 user-menu-roadin">
   <div class="user-logo">
     <%= link_to "Roadin'", root_path, class: 'roadin-logo-user' %>
   </div>
@@ -8,11 +8,11 @@
     <p class="user-name-roadin"><%=  current_user.name %></p>
   </div>
   <div class="nav-user-roadin">
-    <%= link_to 'Dashboard', user_path(current_user) %>
-    <a href="#">Trip Studio</a>
-    <a href="#">My map</a>
-    <a href="#">Explore</a>
-    <%= link_to 'Friends', friends_path %>
-    <a href="#">Solutions</a>
+    <i class="ion-android-home"></i><%= link_to 'Dashboard', user_path(current_user) %>
+    <i class="ion-android-pin"></i><a href="#">Trip Studio</a>
+    <i class="ion-android-globe"></i><a href="#">My map</a>
+    <i class="ion-android-compass"></i><a href="#">Explore</a>
+    <i class="ion-android-contacts"></i><%= link_to 'Friends', friends_path %>
+    <i class="ion-android-cart"></i><a href="#">Solutions</a>
   </div>
 </div>

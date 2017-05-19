@@ -1,9 +1,8 @@
 <div class="container-fluid user-container-roadin">
-  <div class="col-md-2 col-md-offset-2">
+  <div class="col-md-3 col-md-offset-1">
     <!-- header informations -->
     <div class="header-describe-travel-roadin">
       <h5> <%= @travel.title %> </h5>
-      <hr>
       <p> <%= @travel.description %> </p>
       <p class="travel-dates-roadin"> <%= @travel.begin_date %> - <%= @travel.end_date %></p>
       <p> Budget de <%= @travel.display_budget %> </p>
@@ -50,9 +49,13 @@
 
   <!-- steps manager -->
   <div class="step-manager-roadin-on-map col-md-7">
+    <h4> Steps manager &nbsp;<i class="ion-ios-arrow-down" style="color: #ffffff;"></i> </h4>
     <div class="data-steps">
       <% @travel.steps.each do |step| %>
-          <div class="each-steps-instance"><%= step.place %></div>
+          <div class="each-steps-instance">
+            <h6><%= step.place %></h6>
+            <p class="step-manager-time"> <%= step.step_duration %> </p>
+          </div>
       <% end %>
     </div>
   </div>

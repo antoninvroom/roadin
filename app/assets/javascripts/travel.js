@@ -58,14 +58,21 @@ $(document).ready(function() {
             });
             map.fitBounds(bounds);
 
+            map.on('click', 'markers', function (e) {
+                new mapboxgl.Popup()
+                    .setLngLat(e.features[0].geometry.coordinates)
+                    .setHTML(e.features[0].properties.place)
+                    .addTo(map);
+            });
+
             for(var i = 0; i < data.length; i++) {
                 var last = data.length - 1
                 var from = data[i];
                 var to = data[i + 1];
                 if(i != last) {
-                    apiCall(from.geometry.coordinates[0], from.geometry.coordinates[1], to.geometry.coordinates[0], to.geometry.coordinates[1], mapboxgl.accessToken);
+                    apiCall(from.geometry.coordinates[0], from.geometry.coordinates[1], to.geometry.coordinates[0], to.geometry.coordinates[1], mapboxgl.accessToken, i);
                 } else {
-                    apiCall(from.geometry.coordinates[0], from.geometry.coordinates[1], from.geometry.coordinates[0], from.geometry.coordinates[1], mapboxgl.accessToken);
+                    apiCall(from.geometry.coordinates[0], from.geometry.coordinates[1], from.geometry.coordinates[0], from.geometry.coordinates[1], mapboxgl.accessToken, i);
                 }
             }
         }, error: function(data) {
@@ -73,36 +80,30 @@ $(document).ready(function() {
         }
     });
 
-    function apiCall(from_one, from_two, to_one, to_two, token) {
-        var api_call = $.get("https://api.mapbox.com/directions/v5/mapbox/driving/" + from_one + "," + from_two + ";" + to_one + "," + to_two + "?access_token=" + token, function(data) {
-          map.on('load', function () {
-              map.addSource("route", {
-                  "type": "geojson",
-                  "data": {
-                      "type": "Feature",
-                      "properties": {},
-                      "geometry": {
-                          "type": "LineString",
-                          "coordinates": data.routes[0].geometry
-                      }
-                  }
-              });
-
-              map.addLayer({
-                  "id": "route",
-                  "type": "line",
-                  "source": "route",
-                  "layout": {
-                      "line-join": "round",
-                      "line-cap": "round"
-                  },
-                  "paint": {
-                      "line-color": "#888",
-                      "line-width": 8
-                  }
-              });
-          });
+    function apiCall(from_one, from_two, to_one, to_two, token, number) {
+      var number = "route" + number;
+      $.get("https://api.mapbox.com/directions/v5/mapbox/driving/" + from_one + "," + from_two + ";" + to_one + "," + to_two + "?access_token=" + token + "&geometries=geojson", function(data) {
+        map.addLayer({
+          id: number,
+          type: 'line',
+          source: {
+            type: 'geojson',
+            data: {
+              type: 'Feature',
+              properties: {},
+              geometry: data.routes[0].geometry,
+            },
+          },
+          layout: {
+            'line-join': 'round',
+            'line-cap': 'round',
+          },
+          paint: {
+            'line-color': '#ff7e5f',
+            'line-width': 2,
+          },
         });
+      });
     }
 
     // get modals

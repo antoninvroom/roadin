@@ -61,7 +61,7 @@ $(document).ready(function() {
             map.on('click', 'markers', function (e) {
                 new mapboxgl.Popup()
                     .setLngLat(e.features[0].geometry.coordinates)
-                    .setHTML(e.features[0].properties.place)
+                    .setHTML("<h4>" + e.features[0].properties.place + "</h4>" + "<p>" + e.features[0].properties.time + " jours </p>" + "<p>" + e.features[0].properties.desc +  "</p>")
                     .addTo(map);
             });
 
@@ -112,10 +112,6 @@ $(document).ready(function() {
             e.preventDefault();
             $('#modal_roadin').toggleClass('modal-roadin-open');
         });
-        $('#manage_steps').click(function(e) {
-            e.preventDefault();
-            $('#modal_manage').toggleClass('modal-roadin-open');
-        });
     }
 
     // Search autocomplete using ALGOLIA search engine
@@ -125,8 +121,18 @@ $(document).ready(function() {
         });
     }
 
+    function _slickInit() {
+      $('.data-steps').slick({
+        centerMode: true,
+        centerPadding: '60px',
+        slidesToShow: 3,
+        arrows: false,
+      });
+    }
+
     // init functions
     _getModal();
     _aglgoliaSearch();
+    _slickInit();
 
 });

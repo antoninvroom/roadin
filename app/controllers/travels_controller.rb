@@ -32,6 +32,7 @@ class TravelsController < ApplicationController
             properties: {
                 place: step.place,
                 time: step.time_to_stay,
+                desc: step.step_description,
                 'marker-color': '#ff7e5f',
                 'marker-size': 'large',
                 'marker-symbol': 'marker'
@@ -58,7 +59,7 @@ class TravelsController < ApplicationController
 
   private
   def travel_params
-    params.require(:travel).permit(:title, :description, :begin_date, :end_date, :user,
+    params.require(:travel).permit(:title, :description, :begin_date, :end_date, :user, :budget,
                                    steps_attributes: [:id, :place, :time_to_stay, :step_description, :address])
   end
 end

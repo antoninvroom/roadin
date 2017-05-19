@@ -21,6 +21,11 @@
     color: #777777;
     font-size: 10px;
   }
+  .travel-budget-avg {
+    font-family: 'Montserrat-light';
+    color: #777777;
+    font-size: 10px;
+  }
 }
 
 a {
@@ -75,4 +80,20 @@ a {
   height: 100vh;
   background-color: #ffffff;
   transition-duration: 0.3s;
+}
+
+.step-manager-roadin-on-map {
+  background-color: rgba(34, 34, 34, 0.7);
+  height: 150px;
+  position: fixed;
+  bottom: 30px;
+  right: 50px;
+  .each-steps-instance {
+    height: 100px;
+    width: auto;
+    background-color: #eeeeee;
+    margin: 20px;
+    padding: 15px;
+    border-radius: 10px;
+  }
 }

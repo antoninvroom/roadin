@@ -5,6 +5,12 @@
   right: 0;
 }
 
+.arr {
+  color: #ffffff;
+  font-size: 25px;
+  cursor: pointer;
+}
+
 h6, h1, h2, h3, h4, h5 {
   font-family: 'Montserrat-medium';
 }
@@ -91,13 +97,29 @@ a {
   border-radius: 10px;
   height: 200px;
   position: fixed;
-  bottom: 30px;
+  bottom: -150px;
   right: 50px;
   h4 {
     color: #ffffff;
     margin-left: 25px;
     margin-top: 15px;
     margin-bottom: 0px;
+  }
+  .arrow-back-step-manage {
+    position: absolute;
+    top: 45%;
+    left: 10px;
+    i {
+      @extend .arr;
+    }
+  }
+  .arrow-next-step-manage {
+    position: absolute;
+    top: 45%;
+    right: 10px;
+    i {
+      @extend .arr;
+    }
   }
   .each-steps-instance {
     height: 100px;
@@ -111,4 +133,8 @@ a {
       color: #777;
     }
   }
+}
+
+#close_open_step_manager {
+  cursor: pointer;
 }

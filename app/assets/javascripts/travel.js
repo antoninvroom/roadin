@@ -23,8 +23,7 @@ $(document).ready(function() {
     // center map on selected marker
     map.on('click', 'markers', function (e) {
         map.flyTo({
-          center: e.features[0].geometry.coordinates,
-          zoom: 1
+          center: e.features[0].geometry.coordinates
         });
     });
 
@@ -106,7 +105,7 @@ $(document).ready(function() {
           },
           paint: {
             'line-color': '#ff7e5f',
-            'line-width': 2,
+            'line-width': 3,
           },
         });
       });
@@ -132,7 +131,40 @@ $(document).ready(function() {
         infinite: true,
         slidesToShow: 3,
         slidesToScroll: 3,
-        arrows: false
+        arrows: false,
+        draggable: false
+      });
+    }
+
+    function _navigateSlick() {
+      $('#prev_steps').click(function(e){
+        e.preventDefault();
+        $('.data-steps').slick('slickPrev');
+      });
+      $('#next_steps').click(function(e){
+        e.preventDefault();
+        $('.data-steps').slick('slickNext');
+      });
+    }
+
+    // open / close step manager on map
+    function _closeOpenManager() {
+      $('#close_open_step_manager').click(function(e) {
+        if($(this).hasClass('ion-ios-arrow-up')) {
+          $(this).removeClass('ion-ios-arrow-up');
+          $(this).addClass('ion-ios-arrow-down');
+          $('.step-manager-roadin-on-map').css({
+            'bottom' : 30 + 'px',
+            'transition-duration' : 0.3 + 's'
+          });
+        } else {
+          $(this).removeClass('ion-ios-arrow-down');
+          $(this).addClass('ion-ios-arrow-up');
+          $('.step-manager-roadin-on-map').css({
+            'bottom' : -150 + 'px',
+            'transition-duration' : 0.3 + 's'
+          });
+        }
       });
     }
 
@@ -140,5 +172,7 @@ $(document).ready(function() {
     _getModal();
     _aglgoliaSearch();
     _slickInit();
+    _navigateSlick();
+    _closeOpenManager();
 
 });

@@ -5,6 +5,11 @@
       <h5> <%= @travel.title %> </h5>
       <p> <%= @travel.description %> </p>
       <p class="travel-dates-roadin"> <%= @travel.begin_date %> - <%= @travel.end_date %></p>
+      <% if @travel.time_respect? %>
+        <span class="label label-success"> <%= @travel.time_more_less %> jours restant </span>
+      <% else %>
+        <span class="label label-danger"> <%= @travel.time_more_less %> jours en trop </span>
+      <% end %>
       <p> Budget de <%= @travel.display_budget %> </p>
       <% if @travel.steps.count != 0 %>
         <p class="travel-budget-avg"> (soit en moyenne : <%= @travel.avg_per_steps %> € par étape) </p>
@@ -49,7 +54,10 @@
 
   <!-- steps manager -->
   <div class="step-manager-roadin-on-map col-md-7">
-    <h4> Steps manager &nbsp;<i class="ion-ios-arrow-down" style="color: #ffffff;"></i> </h4>
+    <h4> Steps manager &nbsp;<i class="ion-ios-arrow-up" id="close_open_step_manager" style="color: #ffffff;"></i> </h4>
+    <div class="arrow-back-step-manage">
+      <i class="ion-ios-arrow-back arr" id="prev_steps"></i>
+    </div>
     <div class="data-steps">
       <% @travel.steps.each do |step| %>
           <div class="each-steps-instance">
@@ -57,6 +65,9 @@
             <p class="step-manager-time"> <%= step.step_duration %> </p>
           </div>
       <% end %>
+    </div>
+    <div class="arrow-next-step-manage">
+      <i class="ion-ios-arrow-forward arr" id="next_steps"></i>
     </div>
   </div>
   <!-- end steps manager -->

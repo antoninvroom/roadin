@@ -16,6 +16,10 @@
 @import "mapbox";
 @import '*';
 
+body {
+  overflow-x: hidden;
+}
+
 // fonts
 @font-face {
   font-family: 'Montserrat-bold';
@@ -41,4 +45,3 @@
   font-family: 'Montserrat-light';
   src: url('/assets/Montserrat-Light.ttf');
 }
-

@@ -6,11 +6,15 @@
       <p> <%= @travel.description %> </p>
       <p class="travel-dates-roadin"> <%= @travel.begin_date %> - <%= @travel.end_date %></p>
       <% if @travel.time_respect? %>
-        <span class="label label-success"> <%= @travel.time_more_less %> jours restant </span>
+        <span class="label label-success" data-toggle="tooltip" data-placement="right" title="you have <%= @travel.time_more_less %> day left as your travel date mentioned">
+          <%= @travel.time_more_less %> day<% if @travel.time_more_less > 1 %>s<% end %> left
+        </span>
       <% else %>
-        <span class="label label-danger"> <%= @travel.time_more_less %> jours en trop </span>
+        <span class="label label-danger" data-toggle="tooltip" data-placement="right" title="you have <%= @travel.time_more_less %> day loose as your travel date mentioned">
+          <%= @travel.time_more_less %> day<% if @travel.time_more_less > 1 %>s<% end %> loose
+        </span>
       <% end %>
-      <p> Budget de <%= @travel.display_budget %> </p>
+      <p style="padding-top: 10px;"> Budget de <%= @travel.display_budget %> </p>
       <% if @travel.steps.count != 0 %>
         <p class="travel-budget-avg"> (soit en moyenne : <%= @travel.avg_per_steps %> € par étape) </p>
       <% end %>
@@ -60,10 +64,12 @@
     </div>
     <div class="data-steps">
       <% @travel.steps.each do |step| %>
+          <%= link_to travel_step_path(step) do %>
           <div class="each-steps-instance">
             <h6><%= step.place %></h6>
             <p class="step-manager-time"> <%= step.step_duration %> </p>
           </div>
+          <% end %>
       <% end %>
     </div>
     <div class="arrow-next-step-manage">

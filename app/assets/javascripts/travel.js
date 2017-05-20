@@ -168,11 +168,16 @@ $(document).ready(function() {
       });
     }
 
+    function _tooltipManager() {
+      $('[data-toggle="tooltip"]').tooltip();
+    }
+
     // init functions
     _getModal();
     _aglgoliaSearch();
     _slickInit();
     _navigateSlick();
     _closeOpenManager();
+    _tooltipManager();
 
 });

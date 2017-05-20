@@ -5,8 +5,6 @@ class StepsController < ApplicationController
   end
 
   def show
-    @travel = Travel.find(params[:travel_id])
-    @step = Step.find(params[:id])
   end
 
   def create

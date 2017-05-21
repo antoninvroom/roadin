@@ -1,5 +1,5 @@
 class ToolboxesController < ApplicationController
-  before_filter :check_step!
+  before_action :check_step!
 
   def check_step!
     @step = Step.find(params[:step_id]) rescue nil
@@ -14,7 +14,8 @@ class ToolboxesController < ApplicationController
 
   def create
     @toolbox = @step.toolbox.create!(toolbox_params)
-    redirect_to @travel, :notice => 'step created!'
+    @toolbox.errors.full_messages
+    redirect_to @step, :notice => 'toolbox created!'
   end
 
   private

@@ -1,5 +1,5 @@
 class StepsController < ApplicationController
-  before_filter :check_travel!
+  before_action :check_travel!
 
   def check_travel!
     @travel = Travel.find(params[:travel_id]) rescue nil

@@ -11,10 +11,27 @@ class Travel
   field :begin_date, type: Date
   field :end_date, type: Date
   field :budget, type: Integer
+  field :go_back, type: Boolean
 
   # steps
   embeds_many :steps
   accepts_nested_attributes_for :steps
+
+  # url
+
+  def travel_namespace
+    return self.title.gsub(' ','-').downcase
+  end
+
+  # Go back
+
+  def is_goBack?
+    if self.go_back
+      return true
+    else
+      return false
+    end
+  end
 
   # Budget methods
 
@@ -41,6 +58,10 @@ class Travel
   def time_for_travel
     time = (self.end_date - self.begin_date).to_i
     return time
+  end
+
+  def time_for_travel_goback
+    return self.time_for_travel * 2
   end
 
   def time_respect?

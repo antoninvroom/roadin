@@ -6,9 +6,9 @@ class Toolbox
   # fields
   field :tool_area, type: String
   field :links, type: Array
-
-
+  
   # step
-  embedded_in :step, :inverse_of => :toolbox
+  belongs_to :step
+
 
 end

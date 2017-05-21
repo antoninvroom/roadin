@@ -1,4 +1,6 @@
 <%= form_for [@travel, @step, Toolbox.new] do |f| %>
+	<%= f.hidden_field :travel_id, :value => @travel.id %>
+	<%= f.hidden_field :step_id, :value => @step.id %>
     <label> Tips & tricks </label>
     <%= f.text_area :tool_area, class: 'form-control', placeholder: 'All things that should help other travelers' %>
     <br>

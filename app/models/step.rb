@@ -28,7 +28,8 @@ class Step
   embedded_in :travel, :inverse_of => :steps
 
   # toolbox
-  embeds_one :toolbox, :inverse_of => :step
+  has_one :toolbox
+  accepts_nested_attributes_for :toolbox
 
   # methods
   def step_name

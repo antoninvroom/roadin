@@ -1,5 +1,7 @@
 // variables
 $orange_roadin:         #f9886c;
+$cherry_roadin:         #FE405E;
+$blue_roadin:           #08A8E1;
 
 @mixin linear-gradient($deg, $begin, $end) {
   background: -webkit-linear-gradient($deg, $begin, $end);
@@ -23,9 +25,37 @@ $orange_roadin:         #f9886c;
   border-radius: 10px;
 }
 
+.btn-custom-cherry {
+  height: 40px;
+  padding: 10px 15px;
+  background-color: $cherry_roadin;
+  color: #ffffff;
+  font-family: 'Montserrat-light';
+  border: none;
+  box-shadow: none;
+  margin-top: 20px;
+  border-radius: 10px;
+  &:hover {
+    color: #ffffff;
+    background-color: darken($cherry_roadin, 2%);
+  }
+}
+
 .btn-custom-roadin {
   @include linear-gradient(45deg, #ff7e5f, #feb47b);
   color: #ffffff;
+}
+
+.label-success-roadin {
+  background-color: $blue_roadin;
+}
+
+.label-danger-roadin {
+  background-color: $cherry_roadin;
+}
+
+.logout {
+  color: $cherry_roadin !important;
 }
 
 
@@ -35,7 +65,12 @@ $orange_roadin:         #f9886c;
   width: 100%;
   max-width: 100%;
   height: 100vh;
+  .worldmap {
+    position: absolute;
+    z-index: 1;
+  }
   .content-banner-roadin {
+    z-index: 888;
     text-align: center;
     width: 100%;
     color: #ffffff;

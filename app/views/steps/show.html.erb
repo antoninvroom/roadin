@@ -1,18 +1,26 @@
-<div class="col-md-10 col-md-offset-1">
-  <%= link_to travel_path(@travel) do %>
-  <button class="btn btn-custom-roadin">
-    <i class="ion-arrow-left-c"></i>
-    Go Back
-  </button>
-  <% end %>
-  <h1> <%= @step.place %> </h1>
-  <p> <%= @step.step_description %> </p>
-  <p> <%= @step.step_duration %> </p>
+<div class="container-fluid user-container-roadin">
+  <div class="col-md-10 col-md-offset-1" style="padding-top: 10px;">
+    <%= link_to travel_path(@travel) do %>
 
-  <%= link_to new_travel_step_toolbox_path(@travel, @step, Toolbox.new) do %>
-  <span> Create your toolbox </span>
-  <button class="rounded-button-roadin">
-    <i class="ion-plus-round"></i>
-  </button>
-  <% end %>
+      <i class="ion-arrow-left-c">&nbsp;Go Back</i>
+
+
+    <% end %>
+    <h1> <%= @step.place %> </h1>
+    <p> <%= @step.step_description %> </p>
+    <p> <%= @step.step_duration %> </p>
+
+    <!-- toolbox manager -->
+    <button class="btn btn-custom-cherry" data-toggle="collapse" data-target="#toolbox_collapse">
+      <span> Create your toolbox <i class="ion-help-circled" data-toggle="toolbox" data-placement="right" title="the toolbox is a way to share tips and tricks about the steps and the city, for other people who want to discover this place !"></i></span>
+    </button>
+
+
+    <!-- partial renderer -->
+    <div class="collapse" id="toolbox_collapse">
+      <div class="well">
+        <%= render partial: 'steps/form_new_toolbox' %>
+      </div>
+    </div>
+  </div>
 </div>

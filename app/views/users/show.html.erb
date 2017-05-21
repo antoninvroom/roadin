@@ -1,16 +1,45 @@
 <div class="container-fluid user-container-roadin">
   <!-- user content page -->
-  <div class="col-md-10 col-md-offset-2 user-content-roadin">
+  <div class="col-md-10 col-md-offset-1 user-content-roadin">
     <div class="introduce-user-roadin">
+      <% if current_user %>
       <h4> Hello <%= @user.name %>, this is your dashboard !  </h4>
       <p> Currently you can create a trip, add some friends, and see all travels that we are created for you !  </p>
+      <% else %>
+      <h4> <%= @user.name %></h4>
+      <% end %>
+      <p class="stat-user-roadin"> <i class="ion-map"></i>
+          &nbsp;<%= @user.travels.count %> travels
+          &nbsp;
+          <i class="ion-location"></i>
+          <%= @user.number_steps %> places visited
+          &nbsp;
+          <i class="ion-clock"></i>
+          <%= @user.total_time_of_travel %> days of travel
+      </p>
+      <%= image_tag('ic.svg', class: 'icon-user') %>
     </div>
     <br>
     <h5> All your travels </h5>
     <hr>
-    <% @travels.each do |travel| %>
-      <p> <%= link_to travel.title, travel_path(travel) %> </p>
-    <% end %>
-    <%= link_to 'Create a travel', new_travel_path ,class: 'btn btn-primary' %>
+    <div class="row">
+      <% @travels.each do |travel| %>
+        <%= link_to travel_path(travel) do %>
+          <div class="each-travel-onuser-roadin col-md-3">
+            <h4> <%= travel.title %> </h4>
+            <p> <%= travel.description %> </p>
+            <span class="counter-travel label label-success-roadin"> <%= travel.steps.count if travel.steps.count > 0 %> step<% if travel.steps.count > 1 %>s<% end %></span>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
+      <br>
+      <%= link_to new_travel_path do %>
+        <button class="btn btn-custom-cherry">
+          <i class="ion-plus-circled"></i>
+            &nbsp; Create a new travel
+        </button>
+      <% end %>
   </div>
 </div>

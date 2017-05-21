@@ -7,8 +7,32 @@
       background-color: #f8f8f8;
       padding: 30px;
       border-radius: 10px;
+      .stat-user-roadin {
+        color: #777777;
+        font-size: 11px;
+      }
+      .icon-user {
+        width: 10%;
+        position: absolute;
+        right: 10px;
+        top: 7%;
+      }
       p {
         font-family: 'Montserrat-light';
       }
+    }
+  }
+
+  // user page
+  .each-travel-onuser-roadin {
+    height: 200px;
+    width: 31%;
+    margin-left: 15px;
+    background-color: #f8f8f8;
+    padding: 30px;
+    border-radius: 10px;
+    color: rgb(32, 32, 32);
+    &:hover {
+      background-color: darken(#f8f8f8, 2%);
     }
   }

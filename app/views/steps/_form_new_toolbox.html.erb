@@ -1,0 +1,6 @@
+<%= form_for [@travel, @step, Toolbox.new] do |f| %>
+    <label> Tips & tricks </label>
+    <%= f.text_area :tool_area, class: 'form-control', placeholder: 'All things that should help other travelers' %>
+    <br>
+    <%= f.submit 'Create', class: 'btn btn-custom-roadin' %>
+<% end %>

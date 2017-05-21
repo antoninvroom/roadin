@@ -9,6 +9,12 @@ class Step
   field :step_description, type: String
   field :coordinates, :type => Array
 
+  # url
+
+  def step_namespace
+    return self.place.gsub(' ','-').downcase
+  end
+
   # method adress
   def address
     return "#{self.place}"

@@ -11,6 +11,9 @@ class User
   field :picture, type: String
   field :auth_token, type: String
 
+  def user_namespace
+    return self.name.gsub(' ', '-').downcase
+  end
 
   def self.create_with_omniauth(auth)
     create! do |user|
@@ -36,6 +39,24 @@ class User
     facebook {|fb| fb.get_connection("me", "friends")}.each do |hash|
       self.friends.where()
     end
+  end
+
+  def number_steps
+    count = 0
+    self.travels.each do |travel|
+      counter_step = travel.steps.count
+      count = count + counter_step
+    end
+    return count
+  end
+
+  def total_time_of_travel
+    count = 0
+    self.travels.each do |travel|
+      counter_time = travel.time_for_travel
+      count = count + counter_time
+    end
+    return count
   end
 
 end

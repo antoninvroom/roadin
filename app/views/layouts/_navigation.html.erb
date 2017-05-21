@@ -5,6 +5,7 @@
       <a href="#">Home</a>
       <a href="#">Concept</a>
       <a href="#">About</a>
+      <a href="#"> Blog </a>
       <% if user_signed_in? %>
           <a href="#"><%= link_to current_user.name, user_path(current_user) %></a>
           <%= link_to('Logout', sign_out_path, class: 'logout') %>

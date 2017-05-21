@@ -6,15 +6,16 @@
       <p> <%= @travel.description %> </p>
       <p class="travel-dates-roadin"> <%= @travel.begin_date %> - <%= @travel.end_date %></p>
       <% if @travel.time_respect? %>
-        <span class="label label-success" data-toggle="tooltip" data-placement="right" title="you have <%= @travel.time_more_less %> day left as your travel date mentioned">
+        <span class="label label-success-roadin" data-toggle="tooltip" data-placement="right" title="you have <%= @travel.time_more_less %> day left as your travel date mentioned">
           <%= @travel.time_more_less %> day<% if @travel.time_more_less > 1 %>s<% end %> left
         </span>
       <% else %>
-        <span class="label label-danger" data-toggle="tooltip" data-placement="right" title="you have <%= @travel.time_more_less %> day loose as your travel date mentioned">
+        <span class="label label-danger-roadin" data-toggle="tooltip" data-placement="right" title="you have <%= @travel.time_more_less %> day loose as your travel date mentioned">
           <%= @travel.time_more_less %> day<% if @travel.time_more_less > 1 %>s<% end %> loose
         </span>
       <% end %>
       <p style="padding-top: 10px;"> Budget de <%= @travel.display_budget %> </p>
+      <p> <%= @travel.steps.count %> step<% if @travel.steps.count > 1 %>s<% end %> </p>
       <% if @travel.steps.count != 0 %>
         <p class="travel-budget-avg"> (soit en moyenne : <%= @travel.avg_per_steps %> € par étape) </p>
       <% end %>

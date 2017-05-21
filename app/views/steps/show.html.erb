@@ -1,3 +1,11 @@
 <div class="col-md-10 col-md-offset-1">
-  <h1> Hello step </h1>
+  <%= link_to travel_path(@travel) do %>
+  <button class="btn btn-custom-roadin">
+    <i class="ion-ios-arrow-thin-left"></i>
+    Go Back
+  </button>
+  <% end %>
+  <h1> <%= @step.place %> </h1>
+  <p> <%= @step.step_description %> </p>
+  <p> <%= @step.step_duration %> </p>
 </div>

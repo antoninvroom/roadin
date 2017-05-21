@@ -64,7 +64,7 @@
     </div>
     <div class="data-steps">
       <% @travel.steps.each do |step| %>
-          <%= link_to travel_step_path(step) do %>
+          <%= link_to travel_step_path(@travel, step) do %>
           <div class="each-steps-instance">
             <h6><%= step.place %></h6>
             <p class="step-manager-time"> <%= step.step_duration %> </p>

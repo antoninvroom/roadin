@@ -21,6 +21,9 @@ class Step
   # steps
   embedded_in :travel, :inverse_of => :steps
 
+  # toolbox
+  embeds_one :toolbox, :inverse_of => :step
+
   # methods
   def step_name
     return "Step - #{self.place}"

@@ -10,7 +10,9 @@ Rails.application.routes.draw do
 
   # travels
   resources :travels do
-    resources :steps
+    resources :steps do
+      resources :toolboxes
+    end
   end
 
   get 'show' => 'travels#show'

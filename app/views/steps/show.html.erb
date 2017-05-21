@@ -1,11 +1,18 @@
 <div class="col-md-10 col-md-offset-1">
   <%= link_to travel_path(@travel) do %>
   <button class="btn btn-custom-roadin">
-    <i class="ion-ios-arrow-thin-left"></i>
+    <i class="ion-arrow-left-c"></i>
     Go Back
   </button>
   <% end %>
   <h1> <%= @step.place %> </h1>
   <p> <%= @step.step_description %> </p>
   <p> <%= @step.step_duration %> </p>
+
+  <%= link_to new_travel_step_toolbox_path(@travel, @step, Toolbox.new) do %>
+  <span> Create your toolbox </span>
+  <button class="rounded-button-roadin">
+    <i class="ion-plus-round"></i>
+  </button>
+  <% end %>
 </div>

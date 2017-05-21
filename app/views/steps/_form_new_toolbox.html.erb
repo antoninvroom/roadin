@@ -1,8 +1,6 @@
 <%= form_for [@travel, @step, Toolbox.new] do |f| %>
 	<%= f.hidden_field :travel_id, :value => @travel.id %>
 	<%= f.hidden_field :step_id, :value => @step.id %>
-    <label> Tips & tricks </label>
-    <%= f.text_area :tool_area, class: 'form-control', placeholder: 'All things that should help other travelers' %>
-    <br>
-    <%= f.submit 'Create', class: 'btn btn-custom-cherry' %>
+	<p> The toolbox is a way to inform other people about things to do during there tripe ! It provide help ! </p>
+    <%= f.submit 'Ok, do it', class: 'btn btn-custom-cherry' %>
 <% end %>

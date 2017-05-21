@@ -10,7 +10,7 @@ class ToolboxesController < ApplicationController
     @toolbox = Toolbox.new(toolbox_params)
     if @toolbox.save
       puts 'toolbox successfully saved'
-      redirect_to travel_step_path(@travel, @toolbox.step_id)
+      redirect_to travel_step_toolbox_path(@travel, @toolbox.step_id, @toolbox)
     else
       puts 'something went wrong'
       puts @toolbox.errors.full_messages

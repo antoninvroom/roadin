@@ -11,7 +11,9 @@ Rails.application.routes.draw do
   # travels
   resources :travels do
     resources :steps do
-      resources :toolboxes
+      resources :toolboxes do
+        resources :items
+      end
     end
   end
 

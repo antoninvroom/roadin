@@ -10,17 +10,21 @@
     <p> <%= @step.step_description %> </p>
     <p> <%= @step.step_duration %> </p>
 
+    <% if !@step.toolbox %>
     <!-- toolbox manager -->
     <button class="btn btn-custom-cherry" data-toggle="collapse" data-target="#toolbox_collapse">
       <span> Create your toolbox <i class="ion-help-circled" data-toggle="toolbox" data-placement="right" title="the toolbox is a way to share tips and tricks about the steps and the city, for other people who want to discover this place !"></i></span>
     </button>
-
-
     <!-- partial renderer -->
     <div class="collapse" id="toolbox_collapse">
       <div class="well">
         <%= render partial: 'steps/form_new_toolbox' %>
       </div>
     </div>
+    <!-- Toolbox manager -->
+    <% else %>
+      <%= link_to 'See your toolbox', travel_step_toolbox_path(@travel, @step, @step.toolbox) %>
+    <% end %>
+
   </div>
 </div>

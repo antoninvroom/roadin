@@ -58,6 +58,22 @@ $blue_roadin:           #08A8E1;
   }
 }
 
+.btn-custom-blue {
+  height: 40px;
+  padding: 10px 15px;
+  background-color: $blue_roadin;
+  color: #ffffff;
+  font-family: 'Montserrat-light';
+  border: none;
+  box-shadow: none;
+  margin-top: 20px;
+  border-radius: 10px;
+  &:hover {
+    color: #ffffff;
+    background-color: darken($blue_roadin, 2%);
+  }
+}
+
 .btn-custom-roadin {
   @include linear-gradient(45deg, #ff7e5f, #feb47b);
   color: #ffffff;

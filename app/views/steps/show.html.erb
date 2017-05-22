@@ -1,12 +1,11 @@
 <div class="container-fluid user-container-roadin">
   <div class="col-md-10 col-md-offset-1" style="padding-top: 10px;">
     <%= link_to travel_path(@travel) do %>
-
       <i class="ion-arrow-left-c">&nbsp;Go Back</i>
-
-
     <% end %>
+    
     <h1> <%= @step.place %> </h1>
+    <h5 class="travel-mention-step"> <%= @travel.title %> </h5>
     <p> <%= @step.step_description %> </p>
     <p> <%= @step.step_duration %> </p>
 
@@ -23,7 +22,11 @@
     </div>
     <!-- Toolbox manager -->
     <% else %>
-      <%= link_to 'See your toolbox', travel_step_toolbox_path(@travel, @step, @step.toolbox) %>
+      <%= link_to 'See your toolbox', travel_step_toolbox_path(@travel, @step, @step.toolbox), class: 'btn btn-custom-cherry' %>
     <% end %>
+
+    <!-- default buttons for manage -->
+    <%= link_to 'Edit the step', edit_travel_step_path(@travel, @step), class: 'btn btn-custom-blue' %>
+    <!-- end default button for manage -->
   </div>
 </div>

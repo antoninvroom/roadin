@@ -24,6 +24,8 @@ class TravelsController < ApplicationController
     @steps.each do |step|
       if !step.toolbox.nil? 
         toolbox_url = travel_step_toolbox_path(@travel, step, step.toolbox.id)
+      else 
+        toolbox_url = travel_step_path(@travel, step)
       end
       if !step.nil?
         @geojson << {

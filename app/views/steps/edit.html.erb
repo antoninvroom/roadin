@@ -1,14 +1,8 @@
+<div class="col-md-11 col-md-offset-1">
+<h2> Update your step </h2>
 <%= form_for [@travel, Step.new] do |f| %>
     <label> Place to go </label>
     <%= f.text_field :place, class: 'form-control', placeholder: 'e.g: France, United-States...', id: 'address-input' %>
-    <label> Confirm country </label>
-    <br>
-    <%= f.select :country do %>
-		<% Country.each do |country| %>
-			<option value="<%= country.code %>"> <%= country.name %></option>
-		<% end %>
-    <% end %>
-    <br>
     <label> Time to stay </label>
     <%= f.text_field :time_to_stay, class: 'form-control', placeholder: 'e.g: 1, 2 or 3' %>
     <label> Description of the step </label>
@@ -16,3 +10,4 @@
     <br>
     <%= f.submit 'Create', class: 'btn btn-custom-cherry' %>
 <% end %>
+</div>

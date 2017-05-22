@@ -41,7 +41,7 @@ gem 'gemoji'
 gem 'geocoder'
 
 # get all cities, states and countries
-gem 'city-state'
+gem 'countries'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

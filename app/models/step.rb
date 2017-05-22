@@ -5,7 +5,7 @@ class Step
 
   # fields
   field :place, type: String
-  field :country, type: String
+  field :country, type: ISO3166::Country
   field :time_to_stay, type: Integer
   field :step_description, type: String
   field :coordinates, :type => Array

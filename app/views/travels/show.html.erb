@@ -66,7 +66,7 @@
     <div class="data-steps">
       <% @travel.steps.each do |step| %>
           <div class="each-steps-instance">
-            <h6><%= step.place %></h6>
+            <h6><%= step.place %> | <%= step.country.emoji_flag %></h6>
             <!--<p class="step-manager-time"> <%#= step.step_duration %> </p>-->
             <%= link_to 'See', travel_step_path(@travel, step), class: 'btn btn-cst-blue-xs btn-xs' %>
             <% if !step.toolbox.nil? %>

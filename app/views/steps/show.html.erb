@@ -4,8 +4,8 @@
       <i class="ion-arrow-left-c">&nbsp;Go Back</i>
     <% end %>
     
-    <h1> <%= @step.place %> </h1>
-    <h5 class="travel-mention-step"> <%= @travel.title %> </h5>
+    <h1> <%= @step.place %> | <%= @step.country.emoji_flag %> </h1>
+    <h5 class="travel-mention-step"> <%= @travel.title %>  </h5>
     <p> <%= @step.step_description %> </p>
     <p> <%= @step.step_duration %> </p>
 

@@ -4,8 +4,8 @@
     <label> Confirm country </label>
     <br>
     <%= f.select :country do %>
-		<% Country.each do |country| %>
-			<option value="<%= country.code %>"> <%= country.name %></option>
+		<% ISO3166::Country.all.each do |country| %>
+			<option value="<%= country.alpha2 %>"> <%= country.name %></option>
 		<% end %>
     <% end %>
     <br>

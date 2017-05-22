@@ -17,7 +17,13 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'show' => 'travels#show'
+  #get 'show' => 'travels#show'
+
+  # Try for namespaces
+
+  #get 'travels/:title', to: 'travels#show', as: :specific_travel
+  #get 'travels/:title/steps/:place', to: 'steps#show'
+  #get 'travels/:title/steps/:place/toolboxes/:id', to: 'toolboxes#show'
 
   # login
   get '/auth/:provider/callback' => 'sessions#create'

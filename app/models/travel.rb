@@ -12,16 +12,14 @@ class Travel
   field :end_date, type: Date
   field :budget, type: Integer
   field :go_back, type: Boolean
+  field :title_namespace, type: String
 
   # steps
   embeds_many :steps
   accepts_nested_attributes_for :steps
 
-  # url
-
-  def travel_namespace
-    return self.title.gsub(' ','-').downcase
-  end
+  # Callbacks
+  before_save :generate_title_namespace
 
   # Go back
 
@@ -80,6 +78,11 @@ class Travel
       diff = self.time_for_travel - self.total_step_time
       return diff
     end
+  end
+
+  private
+  def generate_title_namespace
+    self.title_namespace = self.title.parameterize
   end
 
 end

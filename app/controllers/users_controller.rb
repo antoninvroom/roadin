@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  include EmojiHelper
+  
   before_action :set_user, only: [:show, :update, :destroy, :edit]
 
   def index

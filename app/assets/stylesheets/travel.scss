@@ -11,8 +11,13 @@
   cursor: pointer;
 }
 
-h6, h1, h2, h3, h4, h5 {
+ h1, h2, h3 {
   font-family: 'Montserrat-medium';
+}
+
+h4, h5, h6 {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
 }
 
 .header-describe-travel-roadin {
@@ -24,15 +29,15 @@ h6, h1, h2, h3, h4, h5 {
     font-family: 'Montserrat-medium';
   }
   p {
-    font-family: 'Montserrat-light';
+    font-family: 'Lato', sans-serif;
   }
   .travel-dates-roadin {
-    font-family: 'Montserrat-light';
+    font-family: 'Lato', sans-serif;
     color: #777777;
     font-size: 10px;
   }
   .travel-budget-avg {
-    font-family: 'Montserrat-light';
+    font-family: 'Lato', sans-serif;
     color: #777777;
     font-size: 10px;
   }
@@ -45,7 +50,8 @@ a {
     padding: 20px;
     border-radius: 10px;
     h5 {
-      font-family: 'Montserrat-light';
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
       font-size: 17px;
       color: #8f8f8f;
     }
@@ -55,10 +61,11 @@ a {
       padding: 5px;
       border-radius: 20px;
       text-transform: uppercase;
-      font-family: 'Montserrat-medium';
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
     }
     p {
-      font-family: 'Montserrat-light';
+      font-family: 'Lato', sans-serif;
       color: #8f8f8f;
       font-size: 11px;
     }

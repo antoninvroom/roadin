@@ -6,8 +6,11 @@
     
     <h1> <%= @step.place %> | <%= @step.country.emoji_flag %> </h1>
     <h5 class="travel-mention-step"> <%= @travel.title %>  </h5>
+    <div class="well"> 
+      <p> <%= @step.country.name %> | <%= @step.country.region %> | <%= @step.country.latitude_dec %> | <%= @step.country.longitude_dec %></p>
+    </div>
     <p> <%= @step.step_description %> </p>
-    <p> <%= @step.step_duration %> </p>
+    <p> <%= @step.step_duration %> on <%= @travel.time_for_travel %> days </p>
 
     <% if !@step.toolbox %>
     <!-- toolbox manager -->

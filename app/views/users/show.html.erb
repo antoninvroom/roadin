@@ -23,6 +23,7 @@
     <h5> All your travels </h5>
     <hr>
     <div class="row">
+    <% if @travels.count > 0 %>
       <% @travels.each do |travel| %>
         <%= link_to travel_path(travel) do %>
           <div class="each-travel-onuser-roadin col-md-3">
@@ -32,6 +33,9 @@
           </div>
         <% end %>
       <% end %>
+    <% else %>
+    <p style="color: #777; font-weight: 400; padding-left: 15px;"> You have not create any travel yet ! <%= Emoji.find_by_alias("disappointed_relieved").raw %> </p>
+    <% end %>
     </div>
 
       <br>

@@ -23,7 +23,7 @@
     </div>
     <!-- Toolbox manager -->
     <% else %>
-      <%= link_to 'See your toolbox', travel_step_toolbox_path(@travel, @step, @toolbox) %>
+      <%= link_to 'See your toolbox', travel_step_toolbox_path(@travel, @step, @step.toolbox) %>
     <% end %>
   </div>
 </div>

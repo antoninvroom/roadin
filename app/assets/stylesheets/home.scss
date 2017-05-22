@@ -13,6 +13,23 @@ $blue_roadin:           #08A8E1;
 // global
 .container-fluid { padding: 0; }
 
+.btn-cst-cherry-xs {
+  background-color: $cherry_roadin;
+  color: #ffffff;
+  &:hover {
+    color: #ffffff;
+    background-color: darken($cherry_roadin, 4%);
+  }
+}
+.btn-cst-blue-xs {
+  background-color: $blue_roadin;
+  color: #ffffff;
+  &:hover {
+    color: #ffffff;
+    background-color: darken($blue_roadin, 4%);
+  }
+}
+
 .button-custom-roadin {
   height: 50px;
   width: 200px;

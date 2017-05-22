@@ -65,12 +65,14 @@
     </div>
     <div class="data-steps">
       <% @travel.steps.each do |step| %>
-          <%= link_to travel_step_path(@travel, step) do %>
           <div class="each-steps-instance">
             <h6><%= step.place %></h6>
-            <p class="step-manager-time"> <%= step.step_duration %> </p>
+            <!--<p class="step-manager-time"> <%#= step.step_duration %> </p>-->
+            <%= link_to 'See', travel_step_path(@travel, step), class: 'btn btn-cst-blue-xs btn-xs' %>
+            <% if !step.toolbox.nil? %>
+              <%= link_to 'Toolbox', travel_step_toolbox_path(@travel, step, step.toolbox.id), class: 'btn btn-cst-cherry-xs btn-xs' %>
+            <% end %>
           </div>
-          <% end %>
       <% end %>
     </div>
     <div class="arrow-next-step-manage">

@@ -22,6 +22,9 @@ class TravelsController < ApplicationController
     @steps = @travel.steps
     @geojson = Array.new
     @steps.each do |step|
+      if !step.toolbox.nil? 
+        toolbox_url = travel_step_toolbox_path(@travel, step, step.toolbox.id)
+      end
       if !step.nil?
         @geojson << {
             type: 'Feature',
@@ -32,6 +35,7 @@ class TravelsController < ApplicationController
             properties: {
                 place: step.place,
                 time: step.time_to_stay,
+                toolbox: toolbox_url,
                 desc: step.step_description,
                 'marker-color': '#ff7e5f',
                 'marker-size': 'large',

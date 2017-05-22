@@ -53,7 +53,7 @@ $(document).ready(function() {
                 "source": "markers",
                 "paint": {
                     "circle-radius": 7,
-                    "circle-color": "#ff7e5f"
+                    "circle-color": "#FE405E"
                 },
             });
             // center map on markers
@@ -66,7 +66,7 @@ $(document).ready(function() {
             map.on('click', 'markers', function (e) {
                 new mapboxgl.Popup()
                     .setLngLat(e.features[0].geometry.coordinates)
-                    .setHTML("<h4>" + e.features[0].properties.place + "</h4>" + "<p>" + e.features[0].properties.time + " jours </p>" + "<p>" + e.features[0].properties.desc +  "</p>")
+                    .setHTML("<h4>" + e.features[0].properties.place + "</h4>" + "<p>" + e.features[0].properties.time + " jours </p>" + "<p>" + e.features[0].properties.desc +  "</p>" + "<p>" + "<a href=" + e.features[0].properties.toolbox + " target='_blank'>Toolbox</a>" + "</p>")
                     .addTo(map);
             });
 
@@ -104,7 +104,7 @@ $(document).ready(function() {
             'line-cap': 'round',
           },
           paint: {
-            'line-color': '#ff7e5f',
+            'line-color': '#FE405E',
             'line-width': 3,
           },
         });

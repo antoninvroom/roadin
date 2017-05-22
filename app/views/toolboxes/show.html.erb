@@ -1,5 +1,26 @@
 <div class="container-fluid user-container-roadin">
   <div class="col-md-10 col-md-offset-1" style="padding-top: 10px;">
   	<h2> Create your toolbox </h2>
+  	<button class="btn btn-custom-cherry" type="button" data-toggle="collapse" data-target="#form_item">
+	  Create a new items
+	</button>
+	<div class="collapse" id="form_item">
+	  <div class="well">
+	    <%= render partial: 'toolboxes/form_new_item' %>
+	  </div>
+	</div>
+
+	<!-- display each items of the toolbox -->
+	<hr>
+    <% if !@toolbox.items.blank? %>
+      <div class="display-tools-on-toolbox-roadin">
+        <% @toolbox.items.each do |item| %>
+          <h4> <%= item.title %> </h4>
+          <span> <%= item.type %> </span>
+          <p> <%= item.trick %> </p>
+        <% end %>
+      </div>
+    <% end %>
+    
   </div>
 </div>

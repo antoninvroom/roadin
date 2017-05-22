@@ -1,24 +1,33 @@
 class ItemsController < ApplicationController
-	def new
-		@item = Item.new
-	end
+	before_action :check_toolbox!
 
-	def create
-		@travel = Travel.find(params[:travel_id])
-	    @step = Step.where(id: params[:step_id])
-	    @toolbox = Toolbox.new
-	    if @toolbox.save
-	      puts 'toolbox successfully saved'
-	      redirect_to travel_step_path(@travel, @toolbox.step_id)
-	    else
-	      puts 'something went wrong'
-	      puts @toolbox.errors.full_messages
-	      redirect_to root_path
+  	def check_toolbox!
+    	@toolbox = Toolbox.find(params[:toolbox_id]) rescue nil
+    	if !@toolbox
+        	redirect_to root_path, :alert => 'Toolbox not found'
     	end
-	end
+  	end
 
-	private
-	def toolbox_params
-		params.require(:item).permit(:toolbox_id, :type, :title, :trick, :address, :url)
-	end
+  	def new
+    	@item = Item.new
+  	end
+
+  	def show
+  		@travel = Travel.find(params[:travel_id])
+  		@step = Step.find(params[:step_id])
+    	@item = @toolbox.items.find(params[:id])
+  	end
+
+  	def create
+      @travel = Travel.find(params[:travel_id])
+      @step = @travel.steps.find(id: params[:step_id])
+      @toolbox = Toolbox.find(params[:toolbox_id])
+    	@item = @toolbox.items.create!(item_params)
+    	redirect_to travel_step_toolbox_path(@travel, @step, @toolbox)
+  	end
+
+  	private
+  	def item_params
+    	params.require(:item).permit(:type, :title, :trick, :address, :url, :advise)
+  	end
 end

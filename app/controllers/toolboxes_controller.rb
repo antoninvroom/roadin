@@ -18,6 +18,12 @@ class ToolboxesController < ApplicationController
     end
   end
 
+  def show
+    @toolbox = Toolbox.find(params[:id])
+    @travel = Travel.find(id: params[:travel_id])
+    @step = @travel.steps.find(id: params[:step_id])
+  end
+
   private
   def toolbox_params
     params.require(:toolbox).permit(:step_id, :tool_area, :links)

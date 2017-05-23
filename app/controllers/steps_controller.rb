@@ -37,6 +37,11 @@ class StepsController < ApplicationController
     redirect_to @travel, :notice => 'step created!'
   end
 
+  def destroy
+    @step = Step.find(params[:id])
+    @step.destroy
+  end
+
   private
   def step_params
     params.require(:step).permit(:place, :country, :time_to_stay, :step_description)

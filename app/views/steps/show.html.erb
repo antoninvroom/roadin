@@ -30,6 +30,7 @@
 
     <!-- default buttons for manage -->
     <%= link_to 'Edit the step', edit_travel_step_path(@travel, @step), class: 'btn btn-custom-blue' %>
+    <%= link_to 'Delete the step', travel_step_path(@travel, @step), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-custom-blue' %>
     <!-- end default button for manage -->
   </div>
 </div>

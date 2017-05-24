@@ -38,8 +38,9 @@ class StepsController < ApplicationController
   end
 
   def destroy
-    @step = Step.find(params[:id])
+    @step = @travel.steps.find(params[:id])
     @step.destroy
+    redirect_to travel_path(@travel)
   end
 
   private

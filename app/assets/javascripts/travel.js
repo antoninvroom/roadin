@@ -12,7 +12,7 @@ $(document).ready(function() {
     // generate map
     var map = new mapboxgl.Map({
       container: 'map',
-      style: 'mapbox://styles/mapbox/streets-v10',
+      style: 'mapbox://styles/antoto/cj2ag69ai004t2so52a29mn8i',
       center: [-96, 37.8],
       zoom: 4
     });
@@ -49,12 +49,13 @@ $(document).ready(function() {
             });
             map.addLayer({
                 "id": "markers",
-                "type": "circle",
+                "type": "symbol",
                 "source": "markers",
-                "paint": {
-                    "circle-radius": 7,
-                    "circle-color": "#FE405E"
-                },
+                "layout": {
+                    "icon-image": "{marker-symbol}",
+                    "icon-size": 1,
+                    "icon-offset": [0, -16]
+                }
             });
             // center map on markers
             var bounds = new mapboxgl.LngLatBounds();

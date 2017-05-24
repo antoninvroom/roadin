@@ -41,7 +41,7 @@ class TravelsController < ApplicationController
                 desc: step.step_description,
                 'marker-color': '#ff7e5f',
                 'marker-size': 'large',
-                'marker-symbol': 'marker'
+                'marker-symbol': 'roadin-icon-01-01'
             }
         }
       end

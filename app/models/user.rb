@@ -59,4 +59,16 @@ class User
     return count
   end
 
+  def total_toolboxes
+    count = 0
+    self.travels.each do |travel|
+      travel.steps.each do |step|
+        if step.toolbox 
+          count = count + 1
+        end
+      end
+    end
+    return count
+  end
+
 end

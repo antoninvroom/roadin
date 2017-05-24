@@ -16,6 +16,9 @@
           &nbsp;
           <i class="ion-clock"></i>
           <%= @user.total_time_of_travel %> days of travel
+          &nbsp;
+          <i class="ion-briefcase"></i>
+          <%= @user.total_toolboxes %> toolbox<% if @user.total_toolboxes > 1 %>es <% end %>
       </p>
       <%= image_tag('ic.svg', class: 'icon-user') %>
     </div>
@@ -30,6 +33,10 @@
             <h4> <%= travel.title %> </h4>
             <p> <%= travel.description %> </p>
             <span class="counter-travel label label-success-roadin"> <%= travel.steps.count if travel.steps.count > 0 %> step<% if travel.steps.count > 1 %>s<% end %></span>
+            <br>
+            <% travel.steps.each do |step| %>
+              <%= step.country.emoji_flag %>
+            <% end %>
           </div>
         <% end %>
       <% end %>

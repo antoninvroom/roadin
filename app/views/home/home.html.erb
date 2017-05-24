@@ -9,3 +9,12 @@
     <button class="button-custom-roadin"> Explore the world </button>
   </div>
 </div>
+
+<div class="container-fluid home-explore-roadin">
+	<h2> The latest trips </h2>
+	<% Travel.limit(3).each do |travel| %>
+		<div class="home-latest-cards">
+			<h3><%= link_to travel.title, travel_path(travel) %></h3>
+		</div>
+	<% end %>
+</div>

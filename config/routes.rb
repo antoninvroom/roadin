@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   root to: 'home#home'
 
   # users
-  resources :users
+  resources :users do
+    resources :worlds, :only => [:show, :new, :create]
+  end
 
   # friends
   resources :friends, :only => [:index]

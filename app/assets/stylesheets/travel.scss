@@ -153,3 +153,16 @@ a {
 #close_open_step_manager {
   cursor: pointer;
 }
+
+.header-describe-travel-roadin-logout {
+  background-color: rgb(32, 32, 32);
+  color: #ffffff;
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  .logo-roadin {
+    font-family: 'Montserrat-bold';
+    color: #ffffff;
+    font-size:23px;
+  }
+}

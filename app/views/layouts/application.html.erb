@@ -24,7 +24,9 @@
         <%= render partial: 'layouts/navigation' %>
       <% end %>
       <% if controller_name != "home" && action_name != "home" %>
-          <%= render partial: 'layouts/user_sidebar' %>
+          <% if current_user %>
+            <%= render partial: 'layouts/user_sidebar' %>
+          <% end %>
       <% end %>
       <%= yield %>
       <%#= render partial: 'layouts/footer' %>

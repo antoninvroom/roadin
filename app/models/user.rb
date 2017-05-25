@@ -4,6 +4,7 @@ class User
 
   # relations
   has_many :travels
+  has_one :world
 
   field :provider, type: String
   field :uid, type: String

@@ -14,6 +14,7 @@ class StepsController < ApplicationController
 
   def show
     @step = @travel.steps.find(params[:id])
+    @user = @travel.user
   end
 
   def edit

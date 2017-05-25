@@ -22,6 +22,7 @@ class ToolboxesController < ApplicationController
     @toolbox = Toolbox.find(params[:id])
     @travel = Travel.find(id: params[:travel_id])
     @step = @travel.steps.find(id: params[:step_id])
+    @user = @travel.user
   end
 
   private

@@ -1,0 +1,10 @@
+<div class="container-fluid new-world">
+	<div class="col-md-11 col-md-offset-1" style="padding: 0;">
+		<h2> Create your world </h2>
+		<p> Your world is a simple map that show all the countries you're visited or you have visited </p>
+		<%= form_for [current_user, @world] do |f| %>
+			<%= f.hidden_field :user, :value => current_user %>
+			<%= f.submit 'Create my world', class: 'btn btn-custom-cherry' %>
+		<% end %>
+	</div>
+</div>

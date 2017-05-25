@@ -34,57 +34,59 @@ $(document).ready(function() {
     map.on('mouseleave', 'markers', function () {
         map.getCanvas().style.cursor = '';
     });
+    map.on('load', function() {
+      $.ajax({
+          dataType: 'json',
+          url: grabTravelData(),
+          success: function(data) {
+              geojson = data;
+              map.addSource("markers", {
+                  "type": "geojson",
+                  "data": {
+                      "type": "FeatureCollection",
+                      "features": data
+                  }
+              });
+              map.addLayer({
+                  "id": "markers",
+                  "type": "symbol",
+                  "source": "markers",
+                  "layout": {
+                      "icon-image": "{marker-symbol}",
+                      "icon-size": 1,
+                      "icon-offset": [0, -16]
+                  }
+              });
+              // center map on markers
+              var bounds = new mapboxgl.LngLatBounds();
+              data.forEach(function(feature) {
+                  bounds.extend(feature.geometry.coordinates);
+              });
+              map.fitBounds(bounds);
 
-    $.ajax({
-        dataType: 'json',
-        url: grabTravelData(),
-        success: function(data) {
-            geojson = data;
-            map.addSource("markers", {
-                "type": "geojson",
-                "data": {
-                    "type": "FeatureCollection",
-                    "features": data
-                }
-            });
-            map.addLayer({
-                "id": "markers",
-                "type": "symbol",
-                "source": "markers",
-                "layout": {
-                    "icon-image": "{marker-symbol}",
-                    "icon-size": 1,
-                    "icon-offset": [0, -16]
-                }
-            });
-            // center map on markers
-            var bounds = new mapboxgl.LngLatBounds();
-            data.forEach(function(feature) {
-                bounds.extend(feature.geometry.coordinates);
-            });
-            map.fitBounds(bounds);
+              map.on('click', 'markers', function (e) {
+                  new mapboxgl.Popup()
+                      .setLngLat(e.features[0].geometry.coordinates)
+                      .setHTML("<h4>" + e.features[0].properties.place + "</h4>" + "<p>" + e.features[0].properties.time + " jours </p>" + "<p>" + e.features[0].properties.desc +  "</p>" + "<p>" + "<a href=" + e.features[0].properties.toolbox + " target='_blank' class='btn btn-cst-cherry-xs btn-xs'>Toolbox</a>" + "</p>")
+                      .addTo(map);
+              });
 
-            map.on('click', 'markers', function (e) {
-                new mapboxgl.Popup()
-                    .setLngLat(e.features[0].geometry.coordinates)
-                    .setHTML("<h4>" + e.features[0].properties.place + "</h4>" + "<p>" + e.features[0].properties.time + " jours </p>" + "<p>" + e.features[0].properties.desc +  "</p>" + "<p>" + "<a href=" + e.features[0].properties.toolbox + " target='_blank'>Toolbox</a>" + "</p>")
-                    .addTo(map);
-            });
-
-            for(var i = 0; i < data.length; i++) {
-                var last = data.length - 1
-                var from = data[i];
-                var to = data[i + 1];
-                if(i != last) {
-                    apiCall(from.geometry.coordinates[0], from.geometry.coordinates[1], to.geometry.coordinates[0], to.geometry.coordinates[1], mapboxgl.accessToken, i);
-                } else {
-                    apiCall(from.geometry.coordinates[0], from.geometry.coordinates[1], from.geometry.coordinates[0], from.geometry.coordinates[1], mapboxgl.accessToken, i);
-                }
-            }
-        }, error: function(data) {
-            console.log(data + ' error');
-        }
+              for(var i = 0; i < data.length; i++) {
+                  var last = data.length - 1
+                  var from = data[i];
+                  var to = data[i + 1];
+                  if(i != last) {
+                      apiCall(from.geometry.coordinates[0], from.geometry.coordinates[1], to.geometry.coordinates[0], to.geometry.coordinates[1], mapboxgl.accessToken, i);
+                  } else {
+                      apiCall(from.geometry.coordinates[0], from.geometry.coordinates[1], from.geometry.coordinates[0], from.geometry.coordinates[1], mapboxgl.accessToken, i);
+                  }
+              }
+          }, error: function(data) {
+              console.log(data + ' error');
+          }
+      });
     });
+
 
     function apiCall(from_one, from_two, to_one, to_two, token, number) {
       var number = "route" + number;

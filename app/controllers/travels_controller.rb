@@ -18,6 +18,7 @@ class TravelsController < ApplicationController
 
   def show
     @travel = Travel.find(params[:id])
+    @user = @travel.user
     @step = Step.new
     @steps = @travel.steps
     @geojson = Array.new

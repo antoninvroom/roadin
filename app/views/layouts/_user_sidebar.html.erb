@@ -13,7 +13,7 @@
     <i class="ion-android-globe"></i>
       <% if current_user.world %>
         <%= link_to 'My World', user_world_path(current_user) %>
-      <% else %><%= %> 
+      <% else %>
         <%= link_to 'My World', new_user_world_path(current_user) %>
       <% end %>
     <i class="ion-android-compass"></i><a href="#">Explore</a>

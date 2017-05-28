@@ -4,6 +4,7 @@ $(document).ready(function(){
 	var map_world = new mapboxgl.Map({
       container: 'map_world',
       style: 'mapbox://styles/antoto/cj2ag69ai004t2so52a29mn8i',
+      center: [-36.5625, 45.58328975600631],
       zoom: 1
     });
     map_world.addControl(new mapboxgl.NavigationControl());

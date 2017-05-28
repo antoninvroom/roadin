@@ -1,6 +1,7 @@
 class WorldsController < ApplicationController
 	def show
-		@world = World.find(params[:id])
+		@user = User.find(params[:id])
+		@world = @user.world
 	end
 
 	def new
@@ -9,9 +10,10 @@ class WorldsController < ApplicationController
 
 	def create
 		@world = World.new(world_params)
+		@world.user = current_user
 		if @world.save
 			puts 'ok world is create'
-			redirect_to user_world_path(current_user, @world)
+			redirect_to user_world_path(@world.user_id, @world)
 		else
 			puts 'oups ! something went wrong'
 			render :new

@@ -120,6 +120,18 @@ $(document).ready(function() {
             e.preventDefault();
             $('#modal_roadin').toggleClass('modal-roadin-open');
         });
+        $('#friends_list').click(function(e) {
+            e.preventDefault();
+            $('#modal_roadin_invite').toggleClass('modal-roadin-open');
+        });
+        // Allow user use escape KEY to close all modals
+        /*
+        $(document).keyup(function(e){
+          if (e.keyCode == 27) {
+            $('#modal_roadin,#modal_roadin_invite').toggleClass('modal-roadin');
+          }
+        });
+        */
     }
 
     // Search autocomplete using ALGOLIA search engine
@@ -175,6 +187,19 @@ $(document).ready(function() {
       $('[data-toggle="tooltip"]').tooltip();
     }
 
+    function _searchFormForFriends() {
+      var users = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.obj.whitespace("name"),
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        prefetch: "/participants/autocomplete"
+      });
+      users.initialize();
+      $('.fetch-friends.typeahead').typeahead(null, {
+        displayKey: 'name',
+        source: users.ttAdapter()
+      });
+    }
+
     // init functions
     _getModal();
     _aglgoliaSearch();
@@ -182,5 +207,6 @@ $(document).ready(function() {
     _navigateSlick();
     _closeOpenManager();
     _tooltipManager();
+    _searchFormForFriends();
 
 });

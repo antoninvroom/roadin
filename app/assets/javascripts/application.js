@@ -13,5 +13,6 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require jquery_ujs
+//= require twitter/typeahead.min
 //= require mapbox.js
 //= require_tree .

@@ -23,9 +23,9 @@ class TravelsController < ApplicationController
     @steps = @travel.steps
     @geojson = Array.new
     @steps.each do |step|
-      if !step.toolbox.nil? 
+      if !step.toolbox.nil?
         toolbox_url = travel_step_toolbox_path(@travel, step, step.toolbox.id)
-      else 
+      else
         toolbox_url = travel_step_path(@travel, step)
       end
       if !step.nil?
@@ -62,6 +62,22 @@ class TravelsController < ApplicationController
     else
       render 'show'
     end
+  end
+
+  def autocomplete
+    @user_fb_token = current_user.auth_token
+    unless @user_fb_token.blank?
+      @fb_friends = FbGraph2::User.me(@user_fb_token).friends
+      @fb_friends = @fb_friends.sort_by { |fb_frnd| fb_frnd.raw_attributes['name']}
+      ids = @fb_friends.map {|s| s.id}
+      @friends = User.where(:uid.in => ids)
+    end
+    @friends.map do |friend|
+      {
+        name: friend.name,
+      }
+    end
+    render json: @friends
   end
 
   private

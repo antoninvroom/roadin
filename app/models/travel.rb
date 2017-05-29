@@ -18,6 +18,10 @@ class Travel
   embeds_many :steps
   accepts_nested_attributes_for :steps
 
+  # friends
+  embeds_many :participants
+  accepts_nested_attributes_for :participants
+
   # Callbacks
   before_save :generate_title_namespace
 

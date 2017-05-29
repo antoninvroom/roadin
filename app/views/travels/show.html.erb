@@ -29,6 +29,8 @@
       <% if @travel.steps.count != 0 %>
         <p class="travel-budget-avg"> (soit en moyenne : <%= @travel.avg_per_steps %> € par étape) </p>
       <% end %>
+      <%= image_tag(@user.picture, :alt =>  "#{@user.name} profile picture from facebook", class: "participant-pictures") %>
+    
     </div>
 
     <!-- if not current user display toolboxes -->
@@ -45,7 +47,7 @@
       </div>
     </a>
 
-    <a href="javascript:void(0)" class="click-method-3">
+    <a href="javascript:void(0)" class="click-method-3" id="friends_list">
       <div class="travel-choice" id="new_step_travel">
         <h6> Invite friends </h6>
         <h5> Add friends to your projet </h5>
@@ -103,6 +105,11 @@
     <div class="modal-type-roadin modal-roadin col-md-8" id="modal_roadin">
       <h3> Add a step to your trip ! <%= Emoji.find_by_alias("smiley").raw %></h3>
       <%= render partial: 'steps/form_new_step' %>
+    </div>
+
+    <div class="modal-type-roadin modal-roadin col-md-8" id="modal_roadin_invite">
+      <h3>Invite your friends, for helping you creating the trip <%= Emoji.find_by_alias("rocket").raw %></h3>
+      <%= render partial: 'participants/form_for_new_invite' %>
     </div>
 </div>
 

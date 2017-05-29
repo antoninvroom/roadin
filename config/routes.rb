@@ -17,7 +17,11 @@ Rails.application.routes.draw do
         resources :items
       end
     end
+    resources :participants
   end
+
+  # Api for fetching facebook friends using twitter typeahead 
+  get "participants/autocomplete" => "travels#autocomplete"
 
   #get 'show' => 'travels#show'
 

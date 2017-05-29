@@ -1,0 +1,8 @@
+<!-- form for search users -->
+<%= form_for [@travel, Participant.new], html: { class: "form-inline" } do |f| %>
+    <div class="form-group">
+      <%= f.text_field :name, class: 'typeahead fetch-friends form-control' %>
+    </div>
+  <%= f.submit 'Add to travel', class: 'btn btn-success' %>
+<% end %>
+<!-- end form for search users -->

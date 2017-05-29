@@ -9,6 +9,7 @@ class World
   def get_all_countries_list
   	self.user.travels.each do |travel|
   		travel.steps.each do |step|
+        puts step.country
         return step.country
   		end
   	end

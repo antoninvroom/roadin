@@ -95,7 +95,7 @@ a {
 }
 
 .modal-roadin-open {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   height: 100vh;
@@ -181,4 +181,10 @@ span.twitter-typeahead {
   border-radius: 5px;
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.4);
   width: 500px;
+}
+
+.tt-cursor {
+  background-color: #eeeeee;
+  padding: 10px;
+  border-radius: 5px;
 }

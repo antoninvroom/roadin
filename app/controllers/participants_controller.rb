@@ -14,8 +14,8 @@ class ParticipantsController < ApplicationController
 
     def create
       @user = User.find_by(name: params[:participant][:name])
-      @participant = @travel.participants.create!(participant_params)
-      @participant.user_id = @user.id
+      id = @user.id
+      @participant = @travel.participants.create!(user_id: id)
       redirect_to @travel, :notice => 'ok, your friend have been added to your travel'
     end
 

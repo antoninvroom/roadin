@@ -21,8 +21,7 @@ class TravelsController < ApplicationController
     @user = @travel.user
     @step = Step.new
     @steps = @travel.steps
-    # TRY TO FETCH ALL USERS THAT ARE PRESENT IN PARTICIPANTS
-    # @friends_participate = User.where(:id => @travel.participants.select(:user_id).map(&:user_id))
+    
     @geojson = Array.new
     @steps.each do |step|
       if !step.toolbox.nil?

@@ -21,7 +21,7 @@ class TravelsController < ApplicationController
     @user = @travel.user
     @step = Step.new
     @steps = @travel.steps
-    
+    @participants = User.where(id: @travel.participants.pluck(:user_id).first)
     @geojson = Array.new
     @steps.each do |step|
       if !step.toolbox.nil?

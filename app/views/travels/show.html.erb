@@ -29,8 +29,10 @@
       <% if @travel.steps.count != 0 %>
         <p class="travel-budget-avg"> (soit en moyenne : <%= @travel.avg_per_steps %> € par étape) </p>
       <% end %>
-      <%= image_tag(@user.picture, :alt =>  "#{@user.name} profile picture from facebook", class: "participant-pictures") %>
-      
+      <%= image_tag(@user.picture, :alt =>  "#{@user.name} profile picture from facebook", class: "participant-pictures", :data => { :toggle => 'tooltip', :placement => 'right', :title => @user.name }) %>
+      <% @participants.each do |participant| %>
+        <%= image_tag(participant.picture, :alt =>  "#{participant.name} profile picture from facebook", class: "participant-pictures", :data => { :toggle => 'tooltip', :placement => 'right', :title => participant.name }) %>
+      <% end %>
     </div>
 
     <!-- if not current user display toolboxes -->

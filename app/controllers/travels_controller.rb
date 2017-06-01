@@ -3,6 +3,10 @@ class TravelsController < ApplicationController
     @travel = Travel.new
   end
 
+  def explore
+    @travels = Travel.all.limit(30)
+  end
+
   def create
     @travel = Travel.new(travel_params)
     @travel.user = current_user

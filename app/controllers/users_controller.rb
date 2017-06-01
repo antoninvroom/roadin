@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   include EmojiHelper
-  
+
   before_action :set_user, only: [:show, :update, :destroy, :edit]
 
   def index
@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   def show
     @user = current_user
     @travels = @user.travels
+    @travel_participations = Travel.where('participants.user_id' => @user.id.to_s)
   end
 
   def edit

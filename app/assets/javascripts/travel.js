@@ -137,7 +137,8 @@ $(document).ready(function() {
     // Search autocomplete using ALGOLIA search engine
     function _aglgoliaSearch() {
         var placeAutocomplete = places({
-            container: document.querySelector('#address-input')
+            container: document.querySelector('#address-input'),
+            language: 'FR'
         });
     }
 

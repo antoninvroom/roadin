@@ -1,0 +1,16 @@
+<div class="container-fluid">
+  <div class="col-md-11 col-md-offset-1">
+    <h2 align="center"> Explore the world <%= Emoji.find_by_alias("earth_americas").raw %></h2>
+    <hr>
+    <% @travels.each do |travel| %>
+      <div class="each-explore-item-roadin">
+        <h3><%= travel.title %></h3>
+        <span> <%= travel.user.name %></span>
+        <br>
+        <% travel.steps.each do |step| %>
+          <%= step.country.emoji_flag %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

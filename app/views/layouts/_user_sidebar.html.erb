@@ -16,7 +16,7 @@
       <% else %>
         <%= link_to 'My World', new_user_world_path(current_user) %>
       <% end %>
-    <i class="ion-android-compass"></i><a href="#">Explore</a>
+    <i class="ion-android-compass"></i><%= link_to 'Explore', discover_path %>
     <i class="ion-android-contacts"></i><%= link_to 'Friends', friends_path %>
     <i class="ion-android-bulb"></i><a href="#">Solutions</a>
   </div>

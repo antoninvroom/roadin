@@ -3,27 +3,28 @@
   <div class="col-md-10 col-md-offset-1 user-content-roadin">
     <div class="introduce-user-roadin">
       <% if current_user %>
-      <h2> Hello <%= @user.name %>, this is your dashboard !  </h2>
-      <p> Currently you can create a trip, add some friends, and see all travels that we are created for you !  </p>
+      <h2> Bonjour <%= @user.name %>, et bienvenue sur ton Dashboard !  </h2>
+      <p> Actuellement tu peux créer un voyage, participer aux voyages de vos amis, et voir la carte de tes voyages !  </p>
       <% else %>
       <h4> <%= @user.name %></h4>
       <% end %>
       <p class="stat-user-roadin"> <i class="ion-map"></i>
-          &nbsp;<%= @user.travels.count %> travels
+          &nbsp;<%= @user.travels.count %> voyages
           &nbsp;
           <i class="ion-location"></i>
-          <%= @user.number_steps %> places visited
+          <%= @user.number_steps %> lieus visités
           &nbsp;
           <i class="ion-clock"></i>
-          <%= @user.total_time_of_travel %> days of travel
+          <%= @user.total_time_of_travel %> jours de voyage
           &nbsp;
           <i class="ion-briefcase"></i>
-          <%= @user.total_toolboxes %> toolbox<% if @user.total_toolboxes > 1 %>es <% end %>
+          <%= @user.total_toolboxes %> boîte<% if @user.total_toolboxes > 1 %>s <% end %> à outils
       </p>
       <%= image_tag('ic.svg', class: 'icon-user') %>
     </div>
     <br>
-    <h5> All your travels </h5>
+    <hr>
+    <h5> Tous vos voyages </h5>
     <hr>
     <div class="row">
     <% if @travels.count > 0 %>
@@ -41,16 +42,27 @@
         <% end %>
       <% end %>
     <% else %>
-    <p style="color: #777; font-weight: 400; padding-left: 15px;"> You have not create any travel yet ! <%= Emoji.find_by_alias("disappointed_relieved").raw %> </p>
+    <p style="color: #777; font-weight: 400; padding-left: 15px;"> Vous n'avez pas encore créé de voyage ... <%= Emoji.find_by_alias("disappointed_relieved").raw %> </p>
     <% end %>
     </div>
-
-      <br>
       <%= link_to new_travel_path do %>
         <button class="btn btn-custom-cherry">
           <i class="ion-plus-circled"></i>
-            &nbsp; Create a new travel
+            &nbsp; Créer un voyage
         </button>
       <% end %>
+    <!-- travel participations -->
+    <hr>
+    <h5> Voyages auquels vous participez </h5>
+    <hr>
+      <% unless @travel_participations.nil? %>
+        <% @travel_participations.each do |travel_participation| %>
+          <div class="participations-user">
+            <h4><i class="ion-location"></i> &nbsp;<%= link_to travel_participation.title, travel_path(travel_participation) %></h4>
+            <p>créé par <%= link_to travel_participation.user.name, user_path(travel_participation.user), class: 'creator-link' %></p>
+          </div>
+        <% end %>
+      <% end %>
+    <!-- end travel participations -->
   </div>
 </div>

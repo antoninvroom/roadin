@@ -5,7 +5,7 @@
     <br>
     <%= f.select :country do %>
 		<% ISO3166::Country.all.each do |country| %>
-			<option value="<%= country.alpha2 %>"> <%= country.name %></option>
+			<option value="<%= country.alpha2 %>"><%= country.emoji_flag %> <%= country.name %></option>
 		<% end %>
     <% end %>
     <br>

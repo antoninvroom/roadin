@@ -38,3 +38,22 @@
       background-color: darken(#f8f8f8, 2%);
     }
   }
+
+  .participations-user {
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 15px;
+    width: 30%;
+    float: left;
+    color: #777777;
+    a {
+      color: #777777;
+    }
+    &:hover {
+      background-color: darken(#f8f8f8, 2%);
+    }
+    .creator-link {
+      color: #333333;
+    }
+  }

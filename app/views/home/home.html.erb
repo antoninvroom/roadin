@@ -1,12 +1,12 @@
-<div class="container-fluid banner-roadin">
-  <%= image_tag('worldmap.svg', :class => 'worldmap') %>
-  <div class="content-banner-roadin">
-    <h1 class="main-title-roadin"> Welcome on roadin' ! </h1>
+<div class="container-fluid Roadin-banner">
+  <%= image_tag('worldmap.svg', :class => 'Roadin-banner--background') %>
+  <div class="Roadin-banner--content">
+    <h1 class="Roadin-banner--content--title"> Welcome on roadin' ! </h1>
     <h4> The community travel agency </h4>
-    <p> Roadin let you organize your trip, share your experience and find ideas for your next travel <br>
+    <p class="Roadin-banner--content--text"> Roadin let you organize your trip, share your experience and find ideas for your next travel <br>
     thanks to the roadin toolbox ! </p>
     <h2 class="t1"><%= Emoji.find_by_alias("earth_americas").raw %></h2>
-    <button class="button-custom-roadin"> Explore the world </button>
+    <button class="Roadin-button Roadin-button--state-cherry"> Explore the world </button>
   </div>
 </div>
 

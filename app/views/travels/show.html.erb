@@ -1,37 +1,37 @@
-<div class="container-fluid user-container-roadin">
+<div class="container-fluid Roadin-container">
   <div class="<% if current_user %>col-md-3 col-md-offset-1 <% else %> col-md-4 <% end %>">
     <!-- header informations -->
     <% if !current_user %>
-    <div class="header-describe-travel-roadin-logout">
-      <%= link_to "Roadin'", root_path, class: 'logo-roadin' %>
-      <h5> Welcome on the travel page </h5>
-      <h6> Here you can create your travel and your toolboxes for other travelers. </h6>
+    <div class="Roadin-container--header-visitor">
+      <%= link_to "Roadin'", root_path, class: 'Roadin-container--header-logo-visitor' %>
+      <h5> Bienvenue sur la page de voyage </h5>
+      <h6> Ici vous pouvez créer votre voyage étape par étape, et inviter vos amis. </h6>
     </div>
     <% end %>
-    <div class="header-describe-travel-roadin">
+    <div class="Roadin-container--header">
       <h4> <%= @travel.title %> </h4>
       <% if !current_user %>
-        <p> Created by <%= @user.name %> </p>
+        <p> Créé par <%= @user.name %> </p>
       <% end %>
       <p> <%= @travel.description %> </p>
-      <p class="travel-dates-roadin"> <%= @travel.begin_date %> - <%= @travel.end_date %></p>
+      <p class="Roadin-container--header-dates"> <%= @travel.begin_date %> - <%= @travel.end_date %></p>
       <% if @travel.time_respect? %>
-        <span class="label label-success-roadin" data-toggle="tooltip" data-placement="right" title="you have <%= @travel.time_more_less %> day left as your travel date mentioned">
+        <span class="Roadin-label Roadin-label--blue" data-toggle="tooltip" data-placement="right" title="Vous avez <%= @travel.time_more_less %> jour restant à votre voyage">
           <%= @travel.time_more_less %> day<% if @travel.time_more_less > 1 %>s<% end %> left
         </span>
       <% else %>
-        <span class="label label-danger-roadin" data-toggle="tooltip" data-placement="right" title="you have <%= @travel.time_more_less %> day loose as your travel date mentioned">
+        <span class="Roadin-label Roadin-label--cherry" data-toggle="tooltip" data-placement="right" title="Vous avez <%= @travel.time_more_less %> jours en trop dans votre voyage">
           <%= @travel.time_more_less %> day<% if @travel.time_more_less > 1 %>s<% end %> loose
         </span>
       <% end %>
       <p style="padding-top: 10px;"> Budget de <%= @travel.display_budget %> </p>
-      <p> <%= @travel.steps.count %> step<% if @travel.steps.count > 1 %>s<% end %> </p>
+      <p> <%= @travel.steps.count %> étape<% if @travel.steps.count > 1 %>s<% end %> </p>
       <% if @travel.steps.count != 0 %>
-        <p class="travel-budget-avg"> (soit en moyenne : <%= @travel.avg_per_steps %> € par étape) </p>
+        <p class="Roadin-container--header-budget"> (soit en moyenne : <%= @travel.avg_per_steps %> € par étape) </p>
       <% end %>
-      <%= image_tag(@user.picture, :alt =>  "#{@user.name} profile picture from facebook", class: "participant-pictures", :data => { :toggle => 'tooltip', :placement => 'top', :title => @user.name }) %>
+      <%= image_tag(@user.picture, :alt =>  "#{@user.name} profile picture from facebook", class: "Roadin-container--header-participants", :data => { :toggle => 'tooltip', :placement => 'top', :title => @user.name }) %>
       <% @participants.each do |participant| %>
-        <%= image_tag(participant.picture, :alt =>  "#{participant.name} profile picture from facebook", class: "participant-pictures", :data => { :toggle => 'tooltip', :placement => 'top', :title => participant.name }) %>
+        <%= image_tag(participant.picture, :alt =>  "#{participant.name} profile picture from facebook", class: "Roadin-container--header-participants", :data => { :toggle => 'tooltip', :placement => 'top', :title => participant.name }) %>
       <% end %>
     </div>
 
@@ -42,61 +42,64 @@
     <!-- different choices -->
     <% if current_user %>
     <a href="javascript:void(0)" id="city_country"  class="click-method-1">
-      <div class="travel-choice" id="new_step_travel">
-        <h6> Choose a city / country</h6>
-        <h5> Add a step </h5>
-        <p> Just use the form and type a city or a country to find it. </p>
+      <div class="Roadin-container--cards" id="Roadin_click_first_modal">
+        <h6 class="Roadin-container--cards-title"> Choisissez une ville / un pays</h6>
+        <h5 class="Roadin-container--cards-subtitle"> Ajouter une étape </h5>
+        <p class="Roadin-container--cards-text"> Utilisez simplement le formulaire pour ajouter une étape. </p>
       </div>
     </a>
 
     <a href="javascript:void(0)" class="click-method-3" id="friends_list">
-      <div class="travel-choice" id="new_step_travel">
-        <h6> Invite friends </h6>
-        <h5> Add friends to your projet </h5>
-        <p> Your facebook friends can participe to the creation of the trip ! </p>
+      <div class="Roadin-container--cards" id="Roadin_click_second_modal">
+        <h6 class="Roadin-container--cards-title"> Invitez vos amis </h6>
+        <h5 class="Roadin-container--cards-subtitle"> Ajoutez des amis à votre voyage !</h5>
+        <p class="Roadin-container--cards-text"> Vos amis facebook attendent de vous rejoindre ! </p>
       </div>
     </a>
 
     <a href="javascript:void(0)" class="click-method-4">
-      <div class="travel-choice" id="new_step_travel">
-        <h6> Your toolbox </h6>
-        <h5> Restaurant, notes, hostels .. </h5>
-        <p> Anote all things you need to know for the trip ! and share the good deal with people ! </p>
+      <div class="Roadin-container--cards" id="new_step_travel">
+        <h6 class="Roadin-container--cards-title"> Vos boîtes à outils </h6>
+        <h5 class="Roadin-container--cards-subtitle"> Restaurant, notes, hôtels .. </h5>
+        <p class="Roadin-container--cards-text"> Pour aider les autres à voyager sereinement ! </p>
       </div>
     </a>
 
     <a href="javascript:void(0)" class="click-method-5">
-      <div class="travel-choice" id="new_step_travel">
-        <h6> Discover </h6>
-        <h5> What people loved around you ! </h5>
-        <p>  This is what people love near to your trip steps ! </p>
+      <div class="Roadin-container--cards" id="new_step_travel">
+        <h6 class="Roadin-container--cards-title"> Découvrez </h6>
+        <h5 class="Roadin-container--cards-subtitle"> Qu'est-ce que les autres personnes ont aimé </h5>
+        <p class="Roadin-container--cards-text">  à côté de vous, d'autres utilisateurs ont déjà une éxpérience ! </p>
       </div>
     </a>
     <% end %>
-
   </div>
-  <div class="map col-md-8" id="map" style="padding: 0;"></div>
+
+  <div class="Roadin-map">
+    <div class="map col-md-8" id="map" style="padding: 0;"></div>
+  </div>
+  
 
   <!-- steps manager -->
-  <div class="step-manager-roadin-on-map col-md-7">
-    <h4> Steps manager &nbsp;<i class="ion-ios-arrow-up" id="close_open_step_manager" style="color: #ffffff;"></i> </h4>
-    <div class="arrow-back-step-manage">
-      <i class="ion-ios-arrow-back arr" id="prev_steps"></i>
+  <div class="Roadin-step-manager col-md-7">
+    <h4 class="Roadin-step-manager--title"> Gérer les étapes &nbsp;<i class="ion-ios-arrow-up" id="Roadin-step-manager--opener" style="color: #ffffff;"></i> </h4>
+    <div class="Roadin-step-manager--arrow-back">
+      <i class="ion-ios-arrow-back Roadin-step-manager--arrow-back-icon" id="prev_steps"></i>
     </div>
     <div class="data-steps">
       <% @travel.steps.each do |step| %>
-          <div class="each-steps-instance">
+          <div class="Roadin-step-manager--cards">
             <h6><%= step.place %> | <%= step.country.emoji_flag %></h6>
             <!--<p class="step-manager-time"> <%#= step.step_duration %> </p>-->
-            <%= link_to 'See', travel_step_path(@travel, step), class: 'btn btn-cst-blue-xs btn-xs' %>
+            <%= link_to 'Voir', travel_step_path(@travel, step), class: 'Roadin-button-small Roadin-button-small--state-blue' %>
             <% if !step.toolbox.nil? %>
-              <%= link_to 'Toolbox', travel_step_toolbox_path(@travel, step, step.toolbox.id), class: 'btn btn-cst-cherry-xs btn-xs' %>
+              <%= link_to 'Outils', travel_step_toolbox_path(@travel, step, step.toolbox.id), class: 'Roadin-button-small Roadin-button-small--state-cherry' %>
             <% end %>
           </div>
       <% end %>
     </div>
-    <div class="arrow-next-step-manage">
-      <i class="ion-ios-arrow-forward arr" id="next_steps"></i>
+    <div class="Roadin-step-manager--arrow-next">
+      <i class="ion-ios-arrow-forward Roadin-step-manager--arrow-bnext-icon " id="next_steps"></i>
     </div>
   </div>
   <!-- end steps manager -->
@@ -104,13 +107,13 @@
   <!-- modal custom for pages -->
 
     <!-- modal for create steps -->
-    <div class="modal-type-roadin modal-roadin col-md-8" id="modal_roadin">
-      <h3> Add a step to your trip ! <%= Emoji.find_by_alias("smiley").raw %></h3>
+    <div class="Roadin-modal col-md-8" id="Roadin_first_modal">
+      <h3> Ajoutez une étape à votre voyage ! <%= Emoji.find_by_alias("smiley").raw %></h3>
       <%= render partial: 'steps/form_new_step' %>
     </div>
 
-    <div class="modal-type-roadin modal-roadin col-md-8" id="modal_roadin_invite">
-      <h3>Invite your friends, for helping you creating the trip <%= Emoji.find_by_alias("rocket").raw %></h3>
+    <div class="Roadin-modal col-md-8" id="Roadin_second_modal">
+      <h3>Ajoutez vos amis au voyage ! <%= Emoji.find_by_alias("rocket").raw %></h3>
       <%= render partial: 'participants/form_for_new_invite' %>
     </div>
 </div>

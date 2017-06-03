@@ -1,73 +1,48 @@
-#map {
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  right: 0;
-}
+// TRAVEL PAGE
 
-#step_country {
-  height: 50px;
-  width: 100%;
-  background-color: #ffffff;
-  border: 1px solid #ccc;
-  color: #555555;
-}
-
-.arr {
-  color: #ffffff;
-  font-size: 25px;
-  cursor: pointer;
-}
-
- h1, h2, h3 {
-  font-family: 'Montserrat-medium';
-}
-
-h4, h5, h6 {
-  font-family: 'Lato', sans-serif;
-  font-weight: 700;
-}
-
-.header-describe-travel-roadin {
-  margin-top: 20px;
-  background-color: #eeeeee;
-  padding: 20px;
-  border-radius: 10px;
-  .participant-pictures {
-    width: 7%;
-    border-radius: 50%;
-  }
-  h5 {
-    font-family: 'Montserrat-medium';
-  }
-  p {
-    font-family: 'Lato', sans-serif;
-  }
-  .travel-dates-roadin {
-    font-family: 'Lato', sans-serif;
-    color: #777777;
-    font-size: 10px;
-  }
-  .travel-budget-avg {
-    font-family: 'Lato', sans-serif;
-    color: #777777;
-    font-size: 10px;
+/*
+*   Map
+*/
+.Roadin-map {
+  #map {
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
   }
 }
 
-a {
-  .travel-choice {
+/*
+*   Container
+*/
+.Roadin-container {
+  .Roadin-container--header {
+    margin-top: 20px;
+    background-color: #eeeeee;
+    padding: 20px;
+    border-radius: 10px;
+    .Roadin-container--header-dates, .Roadin-container--header-budget {
+      font-family: 'Lato', sans-serif;
+      color: #777777;
+      font-size: 10px;
+    }
+    .Roadin-container--header-participants {
+      width: 7%;
+      border-radius: 50%;
+    }
+  }
+  .Roadin-container--cards {
     margin-top: 20px;
     background-color: #f8f8f8;
     padding: 20px;
     border-radius: 10px;
-    h5 {
+    .Roadin-container--cards-title {
       font-family: 'Lato', sans-serif;
       font-weight: 700;
       font-size: 17px;
       color: #8f8f8f;
     }
-    h6 {
+    .Roadin-container--cards-subtitle {
       color: #8f8f8f;
       background-color: #eeeeee;
       padding: 5px;
@@ -76,24 +51,21 @@ a {
       font-family: 'Lato', sans-serif;
       font-weight: 700;
     }
-    p {
+    .Roadin-container--cards-text {
       font-family: 'Lato', sans-serif;
       color: #8f8f8f;
       font-size: 11px;
     }
-  }
-  &:hover {
-    .travel-choice {
+    &:hover {
       box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
     }
   }
 }
 
-.modal-type-roadin {
-  padding: 30px;
-}
-
-.modal-roadin  {
+/*
+*   Modal
+*/
+.Roadin-modal {
   position: absolute;
   top: 0;
   right: -2000px;
@@ -102,7 +74,8 @@ a {
   transition-duration: 0.3s;
 }
 
-.modal-roadin-open {
+.Roadin-modal--open {
+  padding: 30px;
   position: fixed;
   top: 0;
   right: 0;
@@ -111,36 +84,45 @@ a {
   transition-duration: 0.3s;
 }
 
-.step-manager-roadin-on-map {
+/*
+*   Step Manager
+*/
+.Roadin-step-manager--arrows {
+  color: #ffffff;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.Roadin-step-manager {
   background-color: rgb(34, 34, 34);
   border-radius: 10px;
   height: 200px;
   position: fixed;
   bottom: -150px;
   right: 50px;
-  h4 {
+  .Roadin-step-manager--title {
     color: #ffffff;
     margin-left: 25px;
     margin-top: 15px;
     margin-bottom: 0px;
   }
-  .arrow-back-step-manage {
+  .Roadin-step-manager--arrow-back {
     position: absolute;
     top: 45%;
     left: 10px;
-    i {
-      @extend .arr;
+    .Roadin-step-manager--arrow-back-icon {
+      @extend .Roadin-step-manager--arrows;
     }
   }
-  .arrow-next-step-manage {
+  .Roadin-step-manager--arrow-next {
     position: absolute;
     top: 45%;
     right: 10px;
-    i {
-      @extend .arr;
+    .Roadin-step-manager--arrow-bnext-icon {
+      @extend .Roadin-step-manager--arrows;
     }
   }
-  .each-steps-instance {
+  .Roadin-step-manager--cards {
     height: 100px;
     width: auto;
     background-color: #eeeeee;
@@ -149,35 +131,44 @@ a {
     border-radius: 10px;
     color: rgb(32, 32, 32);
     position: relative;
-    .step-manager-time {
-      font-size: 10px;
-      color: #777;
-    }
   }
-  .toolbox-badge-roadin {
+  .Roadin-step-manager--badge {
     position: absolute;
     top: 200px;
     left: 50%;
     transform: translate(-50%, 0);
   }
+  .Roadin-step-manager--opener {
+    cursor: pointer;
+  }
 }
 
-#close_open_step_manager {
-  cursor: pointer;
+
+#step_country {
+  padding: 30px;
+  height: 50px;
+  width: 100%;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  color: #555555;
 }
 
-.header-describe-travel-roadin-logout {
+.Roadin-container--header-visitor {
   background-color: rgb(32, 32, 32);
   color: #ffffff;
   margin-top: 20px;
   padding: 20px;
   border-radius: 10px;
-  .logo-roadin {
+  .Roadin-container--header-logo-visitor {
     font-family: 'Montserrat-bold';
     color: #ffffff;
     font-size:23px;
   }
 }
+
+
+
+// Twitter typeahead -- no BEM
 
 span.twitter-typeahead {
   width: 100%;

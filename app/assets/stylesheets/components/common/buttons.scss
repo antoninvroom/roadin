@@ -1,0 +1,64 @@
+// BUTTONS COMPONENTS
+
+/*
+*	Button medium
+*/
+
+.Roadin-button {
+	height: 40px;
+	padding: 10px 15px;
+	font-family: 'Lato', sans-serif;
+	border: none;
+ 	box-shadow: none;
+ 	border-radius: 10px;
+ 	margin-top: 20px;
+}
+
+.Roadin-button--state-cherry {
+	background-color: $cherry_roadin;
+	color: #ffffff;
+	&:hover {
+		color: #ffffff;
+    	background-color: darken($cherry_roadin, 4%);
+	}
+}
+
+.Roadin-button--state-blue {
+	background-color: $blue_roadin;
+  	color: #ffffff;
+  	&:hover {
+  		color: #ffffff;
+    	background-color: darken($blue_roadin, 4%);
+  	}
+}
+
+/*
+*	Button smalls
+*/
+.Roadin-button-small {
+	height: 20px;
+	padding: 5px 7px;
+	font-size: 10px;
+	font-family: 'Lato', sans-serif;
+	border: none;
+ 	box-shadow: none;
+ 	border-radius: 10px;
+}
+
+.Roadin-button-small--state-cherry {
+	background-color: $cherry_roadin;
+ 	color: #ffffff;
+ 	&:hover {
+ 		color: #ffffff;
+    	background-color: darken($cherry_roadin, 4%);
+ 	}
+}
+
+.Roadin-button-small--state-blue {
+	background-color: $blue_roadin;
+ 	color: #ffffff;
+ 	&:hover {
+ 		color: #ffffff;
+    	background-color: darken($blue_roadin, 4%);
+ 	}
+}

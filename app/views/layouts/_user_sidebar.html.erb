@@ -1,23 +1,24 @@
 <!-- user sidebar -->
-<div class="col-md-1 user-menu-roadin">
-  <div class="user-logo">
-    <%= link_to "Roadin'", root_path, class: 'roadin-logo-user' %>
+<div class="col-md-1 Roadin-sidebar">
+  <div class="Roadin-sidebar--logo">
+    <%= link_to "Roadin'", root_path %>
   </div>
-  <div class="header-roadin-user-infos">
-    <%= image_tag(current_user.picture, :alt =>  "#{current_user.name} profile picture from facebook", class: "roadin-pic") %>
-    <p class="user-name-roadin"><%=  current_user.name %></p>
+  <div class="Roadin-sidebar--infos">
+    <%= image_tag(current_user.picture, :alt =>  "#{current_user.name} profile picture from facebook", class: "Roadin-sidebar--infos-avatar") %>
+    <p class="Roadin-sidebar--infos-name"><%=  current_user.name %></p>
   </div>
-  <div class="nav-user-roadin">
-    <i class="ion-android-home"></i><%= link_to 'Profile', user_path(current_user) %>
-    <i class="ion-android-pin"></i><a href="#">Trip Studio</a>
-    <i class="ion-android-globe"></i>
+  <div class="Roadin-sidebar--navigation">
+    <i class="ion-android-home Roadin-sidebar--navigation-icons"></i><%= link_to 'Profile', user_path(current_user), class: 'Roadin-sidebar--navigation-links' %>
+    <i class="ion-android-pin Roadin-sidebar--navigation-icons"></i><a href="#" class="Roadin-sidebar--navigation-links">Studio</a>
+    <i class="ion-android-globe Roadin-sidebar--navigation-icons"></i>
       <% if current_user.world %>
-        <%= link_to 'My World', user_world_path(current_user) %>
+        <%= link_to 'Mon Monde', user_world_path(current_user), class: 'Roadin-sidebar--navigation-links' %>
       <% else %>
-        <%= link_to 'My World', new_user_world_path(current_user) %>
+        <%= link_to 'Mon Monde', new_user_world_path(current_user), class: 'Roadin-sidebar--navigation-links' %>
       <% end %>
-    <i class="ion-android-compass"></i><%= link_to 'Explore', discover_path %>
-    <i class="ion-android-contacts"></i><%= link_to 'Friends', friends_path %>
-    <i class="ion-android-bulb"></i><a href="#">Solutions</a>
+    <i class="ion-android-compass Roadin-sidebar--navigation-icons"></i><%= link_to 'Découvrir', discover_path, class: 'Roadin-sidebar--navigation-links' %>
+    <i class="ion-android-contacts Roadin-sidebar--navigation-icons"></i><%= link_to 'Amis', friends_path, class: 'Roadin-sidebar--navigation-links' %>
+    <i class="ion-android-bulb Roadin-sidebar--navigation-icons"></i><a href="#" class="Roadin-sidebar--navigation-links">Solutions</a>
+    <i class="ion-power Roadin-sidebar--navigation-icons" id="logout-user"></i><%= link_to 'Déconnexion', sign_out_path, class: 'logout-on-user', class: 'Roadin-sidebar--navigation-logout' %>
   </div>
 </div>

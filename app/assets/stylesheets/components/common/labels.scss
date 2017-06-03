@@ -1,0 +1,26 @@
+// LABELS COMPONENT
+
+/*
+*	Label
+*/
+
+.Roadin-label {
+	display: inline;
+	padding: 0.2em 0.6em 0.3em;
+	font-size: 75%;
+	font-weight: 700;
+	line-height: 1;
+	color: #ffffff;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: baseline;
+	border-radius: 0.25em;
+}
+
+.Roadin-label--blue {
+	background-color: $blue_roadin;
+}
+
+.Roadin-label--cherry {
+	background-color: $cherry_roadin;
+}

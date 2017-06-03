@@ -1,12 +1,10 @@
-a:hover {
-  text-decoration: none;
-}
+// HEADER COMPONENT
 
-.main-wrapper {
-  position: relative;
-}
+/*
+* Header 
+*/  
 
-.header-roadin {
+.Roadin-header {
   z-index: 999;
   height: 70px;
   line-height: 70px;
@@ -15,24 +13,27 @@ a:hover {
   top: 0;
   left: 0;
   right: 0;
-  .logo-roadin {
+  .Roadin-header--logo {
     float: left;
     font-family: 'Montserrat-bold';
     margin-left: 20px;
     color: #ffffff;
     font-size:23px;
   }
-  .roadin-navigation {
+
+  .Roadin-header--navigation {
     float: right;
-    a {
+    .Roadin-header--navigation--links {
       font-family: 'Lato', sans-serif;
       font-weight: 700;
       margin-right: 20px;
       color: #ffffff;
     }
+    .Roadin-header--navigation--avatar {
+      border-radius: 50%;
+    }
   }
 }
 
-.profile-picture {
-  border-radius: 50%;
-}
+
+

@@ -1,15 +1,15 @@
-<div class="container-fluid header-roadin">
+<div class="container-fluid Roadin-header">
   <div class="container">
-    <%= link_to "Roadin'", root_path, class: 'logo-roadin' %>
-    <nav class="roadin-navigation">
-      <a href="#">Home</a>
-      <a href="#">Concept</a>
-      <a href="#">About</a>
-      <a href="#"> Blog </a>
+    <%= link_to "Roadin'", root_path, class: 'Roadin-header--logo' %>
+    <nav class="Roadin-header--navigation">
+      <a href="#" class="Roadin-header--navigation--links">Home</a>
+      <a href="#" class="Roadin-header--navigation--links">Concept</a>
+      <a href="#" class="Roadin-header--navigation--links">About</a>
+      <a href="#" class="Roadin-header--navigation--links"> Blog </a>
       <% if user_signed_in? %>
-          <a href="#"><%= link_to current_user.name, user_path(current_user) %></a>
-          <%= link_to('Logout', sign_out_path, class: 'logout') %>
-          <%= image_tag(current_user.picture, :alt =>  "#{current_user.name} profile picture from facebook", class: "profile-picture") %>
+          <a href="#" class="Roadin-header--navigation--links"><%= link_to current_user.name, user_path(current_user), class: 'Roadin-header--navigation--links' %></a>
+          <%= link_to('Logout', sign_out_path, class: 'Roadin-header--navigation--links') %>
+          <%= image_tag(current_user.picture, :alt =>  "#{current_user.name} profile picture from facebook", class: "Roadin-header--navigation--avatar") %>
       <% else %>
           <%= link_to('Login', signin_path, class: 'button button-default')  %>
       <% end %>

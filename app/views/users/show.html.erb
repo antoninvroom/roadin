@@ -1,26 +1,25 @@
-<div class="container-fluid user-container-roadin">
+<div class="container-fluid Roadin-user">
   <!-- user content page -->
-  <div class="col-md-10 col-md-offset-1 user-content-roadin">
-    <div class="introduce-user-roadin">
+  <div class="col-md-10 col-md-offset-1">
+    <div class="Roadin-user--introduction">
       <% if current_user %>
       <h2> Bonjour <%= @user.name %>, et bienvenue sur ton Dashboard !  </h2>
       <p> Actuellement tu peux créer un voyage, participer aux voyages de vos amis, et voir la carte de tes voyages !  </p>
       <% else %>
       <h4> <%= @user.name %></h4>
       <% end %>
-      <p class="stat-user-roadin"> <i class="ion-map"></i>
+      <p class="Roadin-user--introduction-statistiques"> <i class="ion-map"></i>
           &nbsp;<%= @user.travels.count %> voyages
           &nbsp;
-          <i class="ion-location"></i>
+          <i class="ion-location Roadin-user--introduction-icons"></i>
           <%= @user.number_steps %> lieus visités
           &nbsp;
-          <i class="ion-clock"></i>
+          <i class="ion-clock Roadin-user--introduction-icons"></i>
           <%= @user.total_time_of_travel %> jours de voyage
           &nbsp;
-          <i class="ion-briefcase"></i>
+          <i class="ion-briefcase Roadin-user--introduction-icons"></i>
           <%= @user.total_toolboxes %> boîte<% if @user.total_toolboxes > 1 %>s <% end %> à outils
       </p>
-      <%= image_tag('ic.svg', class: 'icon-user') %>
     </div>
     <br>
     <hr>
@@ -30,10 +29,10 @@
     <% if @travels.count > 0 %>
       <% @travels.each do |travel| %>
         <%= link_to travel_path(travel) do %>
-          <div class="each-travel-onuser-roadin col-md-3">
+          <div class="Roadin-user--travels col-md-3">
             <h4> <%= travel.title %> </h4>
             <p> <%= travel.description %> </p>
-            <span class="counter-travel label label-success-roadin"> <%= travel.steps.count if travel.steps.count > 0 %> step<% if travel.steps.count > 1 %>s<% end %></span>
+            <span class="Roadin-label Roadin-label--cherry"> <%= travel.steps.count if travel.steps.count > 0 %> step<% if travel.steps.count > 1 %>s<% end %></span>
             <br>
             <% travel.steps.each do |step| %>
               <%= step.country.emoji_flag %>
@@ -46,7 +45,7 @@
     <% end %>
     </div>
       <%= link_to new_travel_path do %>
-        <button class="btn btn-custom-cherry">
+        <button class="Roadin-button Roadin-button--state-cherry ">
           <i class="ion-plus-circled"></i>
             &nbsp; Créer un voyage
         </button>
@@ -57,9 +56,9 @@
     <hr>
       <% unless @travel_participations.nil? %>
         <% @travel_participations.each do |travel_participation| %>
-          <div class="participations-user">
-            <h4><i class="ion-location"></i> &nbsp;<%= link_to travel_participation.title, travel_path(travel_participation) %></h4>
-            <p>créé par <%= link_to travel_participation.user.name, user_path(travel_participation.user), class: 'creator-link' %></p>
+          <div class="Roadin-user--travels-participations">
+            <h4><i class="ion-location"></i> &nbsp;<%= link_to travel_participation.title, travel_path(travel_participation), class: 'Roadin-user--travels-participation-links' %></h4>
+            <p>créé par <%= link_to travel_participation.user.name, user_path(travel_participation.user), class: 'Roadin-user--travels-participation-creator' %></p>
           </div>
         <% end %>
       <% end %>

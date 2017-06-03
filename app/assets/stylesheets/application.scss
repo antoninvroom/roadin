@@ -14,38 +14,5 @@
 
 @import "bootstrap";
 @import "mapbox";
-@import '*';
-
-body {
-  overflow-x: hidden;
-}
-
-p {
-  font-family: 'Roboto', sans-serif;
-}
-
-// fonts
-@font-face {
-  font-family: 'Montserrat-bold';
-  src: url('/assets/Montserrat-Bold.ttf');
-}
-
-@font-face {
-  font-family: 'Montserrat';
-  src: url('/assets/Montserrat-Regular.ttf');
-}
-
-@font-face {
-  font-family: 'Montserrat-black';
-  src: url('/assets/Montserrat-Black.ttf');
-}
-
-@font-face {
-  font-family: 'Montserrat-medium';
-  src: url('/assets/Montserrat-Medium.ttf');
-}
-
-@font-face {
-  font-family: 'Montserrat-light';
-  src: url('/assets/Montserrat-Light.ttf');
-}
+@import "components/common/modules";
+@import "components/application/modules";

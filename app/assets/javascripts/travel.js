@@ -116,13 +116,13 @@ $(document).ready(function() {
 
     // get modals
     function _getModal() {
-        $('#city_country').click(function(e) {
+        $('#Roadin_click_first_modal').click(function(e) {
             e.preventDefault();
-            $('#modal_roadin').toggleClass('modal-roadin-open');
+            $('#Roadin_first_modal').toggleClass('Roadin-modal--open');
         });
-        $('#friends_list').click(function(e) {
+        $('#Roadin_click_second_modal').click(function(e) {
             e.preventDefault();
-            $('#modal_roadin_invite').toggleClass('modal-roadin-open');
+            $('#Roadin_second_modal').toggleClass('Roadin-modal--open');
         });
         // Allow user use escape KEY to close all modals
         /*
@@ -165,18 +165,18 @@ $(document).ready(function() {
 
     // open / close step manager on map
     function _closeOpenManager() {
-      $('#close_open_step_manager').click(function(e) {
+      $('#Roadin-step-manager--opener').click(function(e) {
         if($(this).hasClass('ion-ios-arrow-up')) {
           $(this).removeClass('ion-ios-arrow-up');
           $(this).addClass('ion-ios-arrow-down');
-          $('.step-manager-roadin-on-map').css({
+          $('.Roadin-step-manager').css({
             'bottom' : 30 + 'px',
             'transition-duration' : 0.3 + 's'
           });
         } else {
           $(this).removeClass('ion-ios-arrow-down');
           $(this).addClass('ion-ios-arrow-up');
-          $('.step-manager-roadin-on-map').css({
+          $('.Roadin-step-manager').css({
             'bottom' : -150 + 'px',
             'transition-duration' : 0.3 + 's'
           });

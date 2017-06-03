@@ -1,0 +1,11 @@
+// variables
+$orange_roadin:         #f9886c;
+$cherry_roadin:         #FE405E;
+$blue_roadin:           #08A8E1;
+
+@mixin linear-gradient($deg, $begin, $end) {
+  background: -webkit-linear-gradient($deg, $begin, $end);
+  background: -o-linear-gradient($deg, $begin, $end);
+  background: -moz-linear-gradient($deg, $begin, $end);
+  background: linear-gradient($deg, $begin, $end);
+}

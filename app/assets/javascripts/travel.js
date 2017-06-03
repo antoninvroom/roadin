@@ -124,14 +124,7 @@ $(document).ready(function() {
             e.preventDefault();
             $('#Roadin_second_modal').toggleClass('Roadin-modal--open');
         });
-        // Allow user use escape KEY to close all modals
-        /*
-        $(document).keyup(function(e){
-          if (e.keyCode == 27) {
-            $('#modal_roadin,#modal_roadin_invite').toggleClass('modal-roadin');
-          }
-        });
-        */
+        
     }
 
     // Search autocomplete using ALGOLIA search engine

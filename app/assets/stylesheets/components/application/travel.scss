@@ -29,6 +29,7 @@
     .Roadin-container--header-participants {
       width: 7%;
       border-radius: 50%;
+      margin: 0 2px;
     }
   }
   .Roadin-container--cards {
@@ -67,9 +68,10 @@
 */
 .Roadin-modal {
   position: absolute;
-  top: 0;
+  top: 50%;
   right: -2000px;
-  height: 100vh;
+  transform: translate(-50%, 0);
+  height: 70vh;
   background-color: #ffffff;
   transition-duration: 0.3s;
 }
@@ -77,11 +79,14 @@
 .Roadin-modal--open {
   padding: 30px;
   position: fixed;
-  top: 0;
-  right: 0;
-  height: 100vh;
+  top: 60%;
+  transform: translate(0, -80%);
+  right: 10%;
+  height: 70vh;
   background-color: #ffffff;
   transition-duration: 0.3s;
+  border-radius: 10px;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
 }
 
 /*
@@ -182,7 +187,7 @@ span.twitter-typeahead {
   width: 500px;
 }
 
-.tt-cursor {
+.tt-cursor  {
   background-color: #eeeeee;
   padding: 10px;
   border-radius: 5px;

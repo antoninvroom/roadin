@@ -107,12 +107,12 @@
   <!-- modal custom for pages -->
 
     <!-- modal for create steps -->
-    <div class="Roadin-modal col-md-8" id="Roadin_first_modal">
+    <div class="Roadin-modal col-md-6" id="Roadin_first_modal">
       <h3> Ajoutez une étape à votre voyage ! <%= Emoji.find_by_alias("smiley").raw %></h3>
       <%= render partial: 'steps/form_new_step' %>
     </div>
 
-    <div class="Roadin-modal col-md-8" id="Roadin_second_modal">
+    <div class="Roadin-modal col-md-6" id="Roadin_second_modal">
       <h3>Ajoutez vos amis au voyage ! <%= Emoji.find_by_alias("rocket").raw %></h3>
       <%= render partial: 'participants/form_for_new_invite' %>
     </div>

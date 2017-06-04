@@ -3,12 +3,12 @@
   <div class="col-md-10 col-md-offset-1">
     <div class="Roadin-user--introduction">
       <% if current_user %>
-      <h2> Bonjour <%= @user.name %>, et bienvenue sur ton Dashboard !  </h2>
+      <h2> Bonjour <%= @user.name %>, et bienvenue sur ton Dashboard ! <%= Emoji.find_by_alias("zap").raw %> </h2>
       <p> Actuellement tu peux créer un voyage, participer aux voyages de vos amis, et voir la carte de tes voyages !  </p>
       <% else %>
       <h4> <%= @user.name %></h4>
       <% end %>
-      <p class="Roadin-user--introduction-statistiques"> <i class="ion-map"></i>
+      <p class="Roadin-user--introduction-statistiques"> <i class="ion-map Roadin-user--introduction-icons"></i>
           &nbsp;<%= @user.travels.count %> voyages
           &nbsp;
           <i class="ion-location Roadin-user--introduction-icons"></i>

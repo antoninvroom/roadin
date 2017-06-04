@@ -2,9 +2,10 @@
   <div class="container">
     <%= link_to "Roadin'", root_path, class: 'Roadin-header--logo' %>
     <nav class="Roadin-header--navigation">
-      <a href="#" class="Roadin-header--navigation--links">Home</a>
-      <a href="#" class="Roadin-header--navigation--links">Concept</a>
-      <a href="#" class="Roadin-header--navigation--links">About</a>
+      <a href="#" class="Roadin-header--navigation--links">Accueil</a>
+      <a href="#" class="Roadin-header--navigation--links">Concepte</a>
+      <a href="#" class="Roadin-header--navigation--links">À propos</a>
+      <a href="#" class="Roadin-header--navigation--links">Statistique de pays</a>
       <a href="#" class="Roadin-header--navigation--links"> Blog </a>
       <% if user_signed_in? %>
           <a href="#" class="Roadin-header--navigation--links"><%= link_to current_user.name, user_path(current_user), class: 'Roadin-header--navigation--links' %></a>

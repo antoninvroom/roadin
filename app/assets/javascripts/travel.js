@@ -67,7 +67,11 @@ $(document).ready(function() {
               map.on('click', 'markers', function (e) {
                   new mapboxgl.Popup()
                       .setLngLat(e.features[0].geometry.coordinates)
-                      .setHTML("<h4>" + e.features[0].properties.place + "</h4>" + "<p>" + e.features[0].properties.time + " jours </p>" + "<p>" + e.features[0].properties.desc +  "</p>" + "<p>" + "<a href=" + e.features[0].properties.toolbox + " target='_blank' class='btn btn-cst-cherry-xs btn-xs'>Toolbox</a>" + "</p>")
+                      .setHTML("<h4>" + e.features[0].properties.place + "</h4>" 
+                              + "<p>" + e.features[0].properties.time + " jours </p>" 
+                              + "<p>" + e.features[0].properties.desc +  "</p>" 
+                              + "<p>" + "<a href=" + e.features[0].properties.toolbox 
+                              + " target='_blank' class='btn btn-cst-cherry-xs btn-xs'>Toolbox</a>" + "</p>")
                       .addTo(map);
               });
 
@@ -76,9 +80,23 @@ $(document).ready(function() {
                   var from = data[i];
                   var to = data[i + 1];
                   if(i != last) {
-                      apiCall(from.geometry.coordinates[0], from.geometry.coordinates[1], to.geometry.coordinates[0], to.geometry.coordinates[1], mapboxgl.accessToken, i);
+                      apiCall(
+                        from.geometry.coordinates[0], 
+                        from.geometry.coordinates[1], 
+                        to.geometry.coordinates[0], 
+                        to.geometry.coordinates[1], 
+                        mapboxgl.accessToken, 
+                        i
+                      );
                   } else {
-                      apiCall(from.geometry.coordinates[0], from.geometry.coordinates[1], from.geometry.coordinates[0], from.geometry.coordinates[1], mapboxgl.accessToken, i);
+                      apiCall(
+                        from.geometry.coordinates[0], 
+                        from.geometry.coordinates[1], 
+                        from.geometry.coordinates[0], 
+                        from.geometry.coordinates[1], 
+                        mapboxgl.accessToken, 
+                        i
+                      );
                   }
               }
           }, error: function(data) {
@@ -90,7 +108,11 @@ $(document).ready(function() {
 
     function apiCall(from_one, from_two, to_one, to_two, token, number) {
       var number = "route" + number;
-      $.get("https://api.mapbox.com/directions/v5/mapbox/driving/" + from_one + "," + from_two + ";" + to_one + "," + to_two + "?access_token=" + token + "&geometries=geojson", function(data) {
+      $.get("https://api.mapbox.com/directions/v5/mapbox/driving/" 
+          + from_one + "," + from_two + ";" + to_one + "," + to_two 
+          + "?access_token=" + token 
+          + "&geometries=geojson", 
+          function(data) {
         map.addLayer({
           id: number,
           type: 'line',
@@ -124,14 +146,20 @@ $(document).ready(function() {
             e.preventDefault();
             $('#Roadin_second_modal').toggleClass('Roadin-modal--open');
         });
-        
+    }
+
+    function _closeModalsEsc() {
+      $(document).keyup(function(e) {
+          if (e.keyCode == 27) {
+            $('#Roadin_first_modal, #Roadin_second_modal').removeClass('Roadin-modal--open');
+          }
+      });
     }
 
     // Search autocomplete using ALGOLIA search engine
     function _aglgoliaSearch() {
         var placeAutocomplete = places({
-            container: document.querySelector('#address-input'),
-            language: 'FR'
+            container: document.querySelector('#address-input')
         });
     }
 
@@ -196,6 +224,7 @@ $(document).ready(function() {
 
     // init functions
     _getModal();
+    _closeModalsEsc();
     _aglgoliaSearch();
     _slickInit();
     _navigateSlick();

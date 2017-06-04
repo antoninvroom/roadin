@@ -15,7 +15,7 @@ class Travel
   field :title_namespace, type: String
 
   # steps
-  embeds_many :steps
+  has_many :steps
   accepts_nested_attributes_for :steps
 
   # friends

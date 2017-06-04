@@ -54,13 +54,15 @@
     <hr>
     <h5> Voyages auquels vous participez </h5>
     <hr>
-      <% unless @travel_participations.nil? %>
+      <% if !@travel_participations.nil? %>
         <% @travel_participations.each do |travel_participation| %>
           <div class="Roadin-user--travels-participations">
             <h4><i class="ion-location"></i> &nbsp;<%= link_to travel_participation.title, travel_path(travel_participation), class: 'Roadin-user--travels-participation-links' %></h4>
             <p>créé par <%= link_to travel_participation.user.name, user_path(travel_participation.user), class: 'Roadin-user--travels-participation-creator' %></p>
           </div>
         <% end %>
+      <% else %>
+        <p> Vous ne participez à aucun voyage pour le moment ... <%= Emoji.find_by_alias("disappointed_relieved").raw %> </p>
       <% end %>
     <!-- end travel participations -->
   </div>

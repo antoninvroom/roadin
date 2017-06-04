@@ -46,6 +46,6 @@ class StepsController < ApplicationController
 
   private
   def step_params
-    params.require(:step).permit(:place, :country, :time_to_stay, :step_description)
+    params.require(:step).permit(:place, :country, :time_to_stay, :step_description, :travel)
   end
 end

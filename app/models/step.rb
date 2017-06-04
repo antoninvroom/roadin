@@ -27,7 +27,7 @@ class Step
   after_validation :geocode
 
   # steps
-  embedded_in :travel, :inverse_of => :steps
+  belongs_to :travel
 
   # toolbox
   has_one :toolbox

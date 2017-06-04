@@ -27,6 +27,7 @@ class TravelsController < ApplicationController
     @steps = @travel.steps
     @participants = User.where(id: @travel.participants.pluck(:user_id).first)
     @geojson = Array.new
+    @near = Array.new
     @steps.each do |step|
       if !step.toolbox.nil?
         toolbox_url = travel_step_toolbox_path(@travel, step, step.toolbox.id)
@@ -52,9 +53,30 @@ class TravelsController < ApplicationController
         }
       end
     end
+    @steps.each do |step|
+      @near_steps = Step.where(:_id.in => step.advises)
+      @near_steps.each do |near_step|
+        if !near_step.nil?
+          @near << {
+            type: 'Feature',
+            geometry: {
+              type: 'Point',
+              coordinates: [near_step.coordinates[0], near_step.coordinates[1]]
+            },
+            properties: {
+              place: near_step.place,
+              author: near_step.travel.user,
+              'marker-color': '#08A8E1',
+              'marker-size': 'large',
+              'marker-symbol': 'roadin-icon-01-01'
+            }
+          }
+        end
+      end
+    end
     respond_to do |format|
       format.html
-      format.json { render json: @geojson }
+      format.json { render :json => {:geojson => @geojson, :near => @near} }
     end
   end
 

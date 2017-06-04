@@ -40,11 +40,12 @@ $(document).ready(function() {
           url: grabTravelData(),
           success: function(data) {
               geojson = data;
+			  console.log(data);
               map.addSource("markers", {
                   "type": "geojson",
                   "data": {
                       "type": "FeatureCollection",
-                      "features": data
+                      "features": data.geojson
                   }
               });
               map.addLayer({
@@ -57,9 +58,26 @@ $(document).ready(function() {
                       "icon-offset": [0, -16]
                   }
               });
+			  // display test
+			  map.addSource("near", {
+			       "type": "geojson",
+			       "data": {
+			           "type": "FeatureCollection",
+			           "features": data.near
+			        }
+			  });
+			  map.addLayer({
+			       "id": "near",
+			       "type": "circle",
+			       "source": "markers",
+			       "paint": {
+			           "circle-radius": 7,
+			           "circle-color": "#ff7e5f"
+			        },
+			  });
               // center map on markers
               var bounds = new mapboxgl.LngLatBounds();
-              data.forEach(function(feature) {
+              data.geojson.forEach(function(feature) {
                   bounds.extend(feature.geometry.coordinates);
               });
               map.fitBounds(bounds);
@@ -75,10 +93,10 @@ $(document).ready(function() {
                       .addTo(map);
               });
 
-              for(var i = 0; i < data.length; i++) {
-                  var last = data.length - 1
-                  var from = data[i];
-                  var to = data[i + 1];
+              for(var i = 0; i < data.geojson.length; i++) {
+                  var last = data.geojson.length - 1
+                  var from = data.geojson[i];
+                  var to = data.geojson[i + 1];
                   if(i != last) {
                       apiCall(
                         from.geometry.coordinates[0], 
@@ -100,7 +118,7 @@ $(document).ready(function() {
                   }
               }
           }, error: function(data) {
-              console.log(data + ' error');
+              console.log(data.geojson + ' error');
           }
       });
     });

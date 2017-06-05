@@ -5,6 +5,14 @@ function grabTravelData(travel_id) {
 $(document).ready(function() {
     var map;
     var directions;
+	
+	// try -
+	var framesPerSecond = 15; 
+	var initialOpacity = 1
+	var opacity = initialOpacity;
+	var initialRadius = 5;
+	var radius = initialRadius;
+	var maxRadius = 18;
 
     // token access for MAPBOX GL
     mapboxgl.accessToken = 'pk.eyJ1IjoiYW50b3RvIiwiYSI6ImNpdm15YmNwNTAwMDUyb3FwbzlzeWluZHcifQ.r44fcNU5pnX3-mYYM495Fw';
@@ -26,12 +34,24 @@ $(document).ready(function() {
           center: e.features[0].geometry.coordinates
         });
     });
+	
+    map.on('click', 'near', function (e) {
+        map.flyTo({
+          center: e.features[0].geometry.coordinates
+        });
+    });
 
     // change mouse action on enter / leave in marker
     map.on('mouseenter', 'markers', function () {
         map.getCanvas().style.cursor = 'pointer';
     });
     map.on('mouseleave', 'markers', function () {
+        map.getCanvas().style.cursor = '';
+    });
+    map.on('mouseenter', 'near', function () {
+        map.getCanvas().style.cursor = 'pointer';
+    });
+    map.on('mouseleave', 'near', function () {
         map.getCanvas().style.cursor = '';
     });
     map.on('load', function() {
@@ -69,12 +89,39 @@ $(document).ready(function() {
 			  map.addLayer({
 			       "id": "near",
 			       "type": "circle",
-			       "source": "markers",
+			       "source": "near",
 			       "paint": {
-			           "circle-radius": 7,
-			           "circle-color": "#ff7e5f"
+					   "circle-radius": initialRadius,
+            		   "circle-radius-transition": {duration: 0},
+            		   "circle-opacity-transition": {duration: 0},
+            		   "circle-color": "#08A8E1"
 			        },
 			  });
+			  map.addLayer({
+			        "id": "near1",
+			        "source": "near",
+			        "type": "circle",
+			        "paint": {
+			           "circle-radius": initialRadius,
+			           "circle-color": "#007cbf"
+			        }
+			  });
+			  
+			  function animateMarker(timestamp) {
+				   setTimeout(function(){
+				      requestAnimationFrame(animateMarker);
+				      radius += (maxRadius - radius) / framesPerSecond;
+				      opacity -= ( .9 / framesPerSecond );
+					  map.setPaintProperty('near', 'circle-radius', radius);
+				      map.setPaintProperty('near', 'circle-opacity', opacity);
+					  if (opacity < 0.1) {
+				      	radius = initialRadius;
+				        opacity = initialOpacity;
+				      } 
+				    }, 1000 / framesPerSecond);
+				}
+			  animateMarker(0);		
+			  	
               // center map on markers
               var bounds = new mapboxgl.LngLatBounds();
               data.geojson.forEach(function(feature) {
@@ -90,6 +137,14 @@ $(document).ready(function() {
                               + "<p>" + e.features[0].properties.desc +  "</p>" 
                               + "<p>" + "<a href=" + e.features[0].properties.toolbox 
                               + " target='_blank' class='btn btn-cst-cherry-xs btn-xs'>Toolbox</a>" + "</p>")
+                      .addTo(map);
+              });
+			  
+              map.on('click', 'near', function (e) {
+                  new mapboxgl.Popup()
+                      .setLngLat(e.features[0].geometry.coordinates)
+                      .setHTML("<h4>" + e.features[0].properties.author + "</h4>" 
+                              + "<p>" + e.features[0].properties.place)
                       .addTo(map);
               });
 

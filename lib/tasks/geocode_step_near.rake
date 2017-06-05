@@ -6,7 +6,7 @@ task :geocode_step_near => :environment do
 
 	def step_near(step)
 		radius = 500
-		@steps_near = Step.geo_near(step.coordinates).max_distance(100)
+		@steps_near = Step.geo_near(step.coordinates).max_distance(5)
 	end
 
 	puts "- start iterating"

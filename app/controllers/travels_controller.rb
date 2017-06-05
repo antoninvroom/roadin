@@ -65,10 +65,10 @@ class TravelsController < ApplicationController
             },
             properties: {
               place: near_step.place,
-              author: near_step.travel.user,
+              author: near_step.travel.user.name,
               'marker-color': '#08A8E1',
               'marker-size': 'large',
-              'marker-symbol': 'roadin-icon-01-01'
+              'marker-symbol': 'marker'
             }
           }
         end

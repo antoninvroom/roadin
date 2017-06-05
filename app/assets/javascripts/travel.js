@@ -5,14 +5,6 @@ function grabTravelData(travel_id) {
 $(document).ready(function() {
     var map;
     var directions;
-	
-	// try -
-	var framesPerSecond = 15; 
-	var initialOpacity = 1
-	var opacity = initialOpacity;
-	var initialRadius = 5;
-	var radius = initialRadius;
-	var maxRadius = 18;
 
     // token access for MAPBOX GL
     mapboxgl.accessToken = 'pk.eyJ1IjoiYW50b3RvIiwiYSI6ImNpdm15YmNwNTAwMDUyb3FwbzlzeWluZHcifQ.r44fcNU5pnX3-mYYM495Fw';
@@ -60,7 +52,71 @@ $(document).ready(function() {
           url: grabTravelData(),
           success: function(data) {
               geojson = data;
-			  console.log(data);
+      			  map.addSource("near", {
+      			      type: "geojson",
+                        "data": {
+                            "type": "FeatureCollection",
+                            "features": data.near
+                        },
+      			      cluster: true,
+      			      clusterMaxZoom: 10, 
+      			      clusterRadius: 40 
+      			  });
+      			  map.addLayer({
+      			      id: "near",
+      			      type: "circle",
+      			      source: "near",
+      			      filter: ["has", "point_count"],
+      			      paint: {
+      			         "circle-color": {
+      			          property: "point_count",
+      			          type: "interval",
+      			          stops: [
+      			             [0, "#E8C737"],
+      			             [5, "#8AD05D"],
+      			             [10, "#007cbf"],
+      			           	]
+      			          },
+      			          "circle-radius": {
+      			             property: "point_count",
+      			             type: "interval",
+      			             stops: [
+      			               [0, 10],
+      			               [100, 30],
+      			               [750, 40]
+      			              ]
+      			        }
+      			       },
+      				   "interactive": true
+      			   });
+    				  map.addLayer({
+    				      id: "near1",
+    				      type: "circle",
+    				      source: "near",
+    				      paint: {
+    				         "circle-color": {
+    				          	property: "point_count",
+    				          	type: "interval",
+    				          	stops: [
+    				             [0, "#E8C737"],
+    				             [5, "#8AD05D"],
+    				             [10, "#007cbf"],
+    				          	]
+    				          },
+    				  		"circle-radius": 15,
+    				  		"circle-opacity": 0.5,
+    				      },
+    					  "interactive": true
+    				 });
+             map.addLayer({
+                  "id": "near-ic",
+                  "type": "symbol",
+                  "source": "near",
+                  "layout": {
+                      "icon-image": "1"
+                  },
+                  "interactive": true
+              });
               map.addSource("markers", {
                   "type": "geojson",
                   "data": {
@@ -78,50 +134,6 @@ $(document).ready(function() {
                       "icon-offset": [0, -16]
                   }
               });
-			  // display test
-			  map.addSource("near", {
-			       "type": "geojson",
-			       "data": {
-			           "type": "FeatureCollection",
-			           "features": data.near
-			        }
-			  });
-			  map.addLayer({
-			       "id": "near",
-			       "type": "circle",
-			       "source": "near",
-			       "paint": {
-					   "circle-radius": initialRadius,
-            		   "circle-radius-transition": {duration: 0},
-            		   "circle-opacity-transition": {duration: 0},
-            		   "circle-color": "#08A8E1"
-			        },
-			  });
-			  map.addLayer({
-			        "id": "near1",
-			        "source": "near",
-			        "type": "circle",
-			        "paint": {
-			           "circle-radius": initialRadius,
-			           "circle-color": "#007cbf"
-			        }
-			  });
-			  
-			  function animateMarker(timestamp) {
-				   setTimeout(function(){
-				      requestAnimationFrame(animateMarker);
-				      radius += (maxRadius - radius) / framesPerSecond;
-				      opacity -= ( .9 / framesPerSecond );
-					  map.setPaintProperty('near', 'circle-radius', radius);
-				      map.setPaintProperty('near', 'circle-opacity', opacity);
-					  if (opacity < 0.1) {
-				      	radius = initialRadius;
-				        opacity = initialOpacity;
-				      } 
-				    }, 1000 / framesPerSecond);
-				}
-			  animateMarker(0);		
-			  	
               // center map on markers
               var bounds = new mapboxgl.LngLatBounds();
               data.geojson.forEach(function(feature) {

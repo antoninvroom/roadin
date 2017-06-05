@@ -46,6 +46,7 @@ class TravelsController < ApplicationController
                 time: step.time_to_stay,
                 toolbox: toolbox_url,
                 desc: step.step_description,
+                plane: step.plane,
                 'marker-color': '#ff7e5f',
                 'marker-size': 'large',
                 'marker-symbol': 'roadin-icon-01-01'

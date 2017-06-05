@@ -1,7 +1,7 @@
 <%= form_for [@travel, Step.new] do |f| %>
-    <label> Place to go </label>
+    <label> Lieu de l'étape </label>
     <%= f.text_field :place, class: 'form-control', placeholder: 'e.g: France, United-States...', id: 'address-input' %>
-    <label> Confirm country </label>
+    <label> Pays </label>
     <br>
     <%= f.select :country do %>
 		<% ISO3166::Country.all.each do |country| %>
@@ -9,10 +9,12 @@
 		<% end %>
     <% end %>
     <br>
-    <label> Time to stay </label>
+    <label> Temps sur place </label>
     <%= f.text_field :time_to_stay, class: 'form-control', placeholder: 'e.g: 1, 2 or 3' %>
-    <label> Description of the step </label>
+    <label> Décrivez votre étape </label>
     <%= f.text_area :step_description, class: 'form-control', placeholder: 'What you will do during the step' %>
+	<br>
+	<i class="ion-plane"></i> &nbsp; <label class="checkbox-inline"><%= f.check_box :plane %>Prenez-vous l'avion</label>
     <br>
-    <%= f.submit 'Create', class: 'Roadin-button Roadin-button--state-cherry' %>
+    <%= f.submit 'Créer', class: 'Roadin-button Roadin-button--state-cherry' %>
 <% end %>

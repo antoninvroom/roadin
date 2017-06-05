@@ -6,10 +6,11 @@ class Step
   # fields
   field :place, type: String
   field :country, type: ISO3166::Country
+  field :plane, type: Boolean, default: false
   field :time_to_stay, type: Integer
   field :step_description, type: String
   field :coordinates, :type => Array
-  field :advises, type: Array
+  field :advises, type: Array, default: []
 
   # url
 

@@ -105,24 +105,45 @@ $(document).ready(function() {
                   var last = data.geojson.length - 1
                   var from = data.geojson[i];
                   var to = data.geojson[i + 1];
+				  console.log(to);
                   if(i != last) {
-                      apiCall(
-                        from.geometry.coordinates[0], 
-                        from.geometry.coordinates[1], 
-                        to.geometry.coordinates[0], 
-                        to.geometry.coordinates[1], 
-                        mapboxgl.accessToken, 
-                        i
-                      );
+					  if(to.properties.plane != true) {
+	                      apiCall(
+	                        from.geometry.coordinates[0], 
+	                        from.geometry.coordinates[1], 
+	                        to.geometry.coordinates[0], 
+	                        to.geometry.coordinates[1], 
+	                        mapboxgl.accessToken, 
+	                        i
+	                      );
+					  } else {
+					  	planePolyline(
+	                        from.geometry.coordinates[0], 
+	                        from.geometry.coordinates[1], 
+	                        to.geometry.coordinates[0], 
+	                        to.geometry.coordinates[1], 
+							i
+					  	)
+					  }
                   } else {
-                      apiCall(
-                        from.geometry.coordinates[0], 
-                        from.geometry.coordinates[1], 
-                        from.geometry.coordinates[0], 
-                        from.geometry.coordinates[1], 
-                        mapboxgl.accessToken, 
-                        i
-                      );
+					  if(from.properties.plane != true) {
+	                      apiCall(
+	                        from.geometry.coordinates[0], 
+	                        from.geometry.coordinates[1], 
+	                        from.geometry.coordinates[0], 
+	                        from.geometry.coordinates[1], 
+	                        mapboxgl.accessToken, 
+	                        i
+	                      );
+					  } else {
+  					  	planePolyline(
+  	                        from.geometry.coordinates[0], 
+  	                        from.geometry.coordinates[1], 
+  	                        from.geometry.coordinates[0], 
+  	                        from.geometry.coordinates[1], 
+  							i
+  					  	)
+					  }
                   }
               }
           }, error: function(data) {
@@ -131,7 +152,47 @@ $(document).ready(function() {
       });
     });
 
+	// if plane is checked on BDD -> display polyline
+	function planePolyline(from_one, from_two, to_one, to_two, number) {
+		var number = "line" + number;
+		var origin = [from_one, from_two];
+		var destination =  [to_one, to_two];
+		var route = {
+		    "type": "FeatureCollection",
+		    "features": [{
+		        "type": "Feature",
+		        "geometry": {
+		            "type": "LineString",
+		            "coordinates": [
+		                origin,
+		                destination
+		            ]
+		        }
+		    }]
+		};
+		var lineDistance = turf.lineDistance(route.features[0], 'kilometers');
+		var arc = [];
+		for (var i = 0; i < lineDistance; i++) {
+		    var segment = turf.along(route.features[0], i / 1000 * lineDistance, 'kilometers');
+		    arc.push(segment.geometry.coordinates);
+		}
+		route.features[0].geometry.coordinates = arc;
+		map.addSource(number, {
+		   "type": "geojson",
+		   "data": route
+		});
+		map.addLayer({
+		   "id": number,
+		   "source": number,
+		   "type": "line",
+		   "paint": {
+		       "line-width": 2,
+		       "line-color": "#007cbf"
+		   }
+		});
+	}
 
+	// else -> display routes
     function apiCall(from_one, from_two, to_one, to_two, token, number) {
       var number = "route" + number;
       $.get("https://api.mapbox.com/directions/v5/mapbox/driving/" 

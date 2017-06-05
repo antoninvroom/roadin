@@ -177,6 +177,7 @@ $(document).ready(function() {
 		    arc.push(segment.geometry.coordinates);
 		}
 		route.features[0].geometry.coordinates = arc;
+		var get_middle = arc.length / 2;
 		map.addSource(number, {
 		   "type": "geojson",
 		   "data": route

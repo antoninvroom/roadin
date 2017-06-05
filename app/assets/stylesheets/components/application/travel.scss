@@ -10,6 +10,15 @@
     top: 0;
     right: 0;
   }
+  .Roadin-map--display-friends {
+	  height: 20px;
+	  width: 20px;
+	  border-radius: 50%;
+	  border: 1px solid #ffffff;
+	  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+	  background-size: contain;
+	  cursor: pointer;
+  }
 }
 
 /*

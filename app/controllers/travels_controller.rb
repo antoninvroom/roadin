@@ -66,6 +66,8 @@ class TravelsController < ApplicationController
             properties: {
               place: near_step.place,
               author: near_step.travel.user.name,
+              img: near_step.travel.user.picture,
+              travel: near_step.travel.title,
               'marker-color': '#08A8E1',
               'marker-size': 'large',
               'marker-symbol': 'marker'

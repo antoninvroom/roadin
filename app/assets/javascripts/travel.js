@@ -26,12 +26,6 @@ $(document).ready(function() {
           center: e.features[0].geometry.coordinates
         });
     });
-	
-    map.on('click', 'near', function (e) {
-        map.flyTo({
-          center: e.features[0].geometry.coordinates
-        });
-    });
 
     // change mouse action on enter / leave in marker
     map.on('mouseenter', 'markers', function () {
@@ -40,83 +34,15 @@ $(document).ready(function() {
     map.on('mouseleave', 'markers', function () {
         map.getCanvas().style.cursor = '';
     });
-    map.on('mouseenter', 'near', function () {
-        map.getCanvas().style.cursor = 'pointer';
-    });
-    map.on('mouseleave', 'near', function () {
-        map.getCanvas().style.cursor = '';
-    });
+	
     map.on('load', function() {
       $.ajax({
           dataType: 'json',
           url: grabTravelData(),
           success: function(data) {
+			  console.log(data);
+			  console.log(data.near.length);
               geojson = data;
-      			  map.addSource("near", {
-      			      type: "geojson",
-                        "data": {
-                            "type": "FeatureCollection",
-                            "features": data.near
-                        },
-      			      cluster: true,
-      			      clusterMaxZoom: 10, 
-      			      clusterRadius: 40 
-      			  });
-      			  map.addLayer({
-      			      id: "near",
-      			      type: "circle",
-      			      source: "near",
-      			      filter: ["has", "point_count"],
-      			      paint: {
-      			         "circle-color": {
-      			          property: "point_count",
-      			          type: "interval",
-      			          stops: [
-      			             [0, "#E8C737"],
-      			             [5, "#8AD05D"],
-      			             [10, "#007cbf"],
-      			           	]
-      			          },
-      			          "circle-radius": {
-      			             property: "point_count",
-      			             type: "interval",
-      			             stops: [
-      			               [0, 10],
-      			               [100, 30],
-      			               [750, 40]
-      			              ]
-      			        }
-      			       },
-      				   "interactive": true
-      			   });
-    				  map.addLayer({
-    				      id: "near1",
-    				      type: "circle",
-    				      source: "near",
-    				      paint: {
-    				         "circle-color": {
-    				          	property: "point_count",
-    				          	type: "interval",
-    				          	stops: [
-    				             [0, "#E8C737"],
-    				             [5, "#8AD05D"],
-    				             [10, "#007cbf"],
-    				          	]
-    				          },
-    				  		"circle-radius": 15,
-    				  		"circle-opacity": 0.5,
-    				      },
-    					  "interactive": true
-    				 });
-             map.addLayer({
-                  "id": "near-ic",
-                  "type": "symbol",
-                  "source": "near",
-                  "layout": {
-                      "icon-image": "1"
-                  },
-                  "interactive": true
-              });
               map.addSource("markers", {
                   "type": "geojson",
                   "data": {
@@ -134,6 +60,20 @@ $(document).ready(function() {
                       "icon-offset": [0, -16]
                   }
               });
+			  
+			  for(var inc = 0; inc < data.near.length; inc++) {
+  			  	var el = document.createElement('div');
+  				el.className = 'Roadin-map--display-friends';
+  				el.style.backgroundImage = 'url(' + data.near[inc].properties.img + ')';
+				var popup = new mapboxgl.Popup({offset: 25})
+			    	.setHTML('<h3>' + data.near[inc].properties.travel + '</h3>'
+						   + '<h6>' + data.near[inc].properties.author + '</h6>');
+  				new mapboxgl.Marker(el)
+  					.setLngLat(data.near[inc].geometry.coordinates)
+					.setPopup(popup)
+  					.addTo(map);
+			  }
+			  
               // center map on markers
               var bounds = new mapboxgl.LngLatBounds();
               data.geojson.forEach(function(feature) {
@@ -155,8 +95,9 @@ $(document).ready(function() {
               map.on('click', 'near', function (e) {
                   new mapboxgl.Popup()
                       .setLngLat(e.features[0].geometry.coordinates)
-                      .setHTML("<h4>" + e.features[0].properties.author + "</h4>" 
-                              + "<p>" + e.features[0].properties.place)
+                      .setHTML("<h4>" + e.features[0].properties.travel + "</h4>" 
+				  	 		 + "<h6>" + e.features[0].properties.author + "</h6>"
+                             + "<p>" + e.features[0].properties.place)
                       .addTo(map);
               });
 

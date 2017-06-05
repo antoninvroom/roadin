@@ -25,7 +25,9 @@ task :geocode_step_near => :environment do
 		if step.advises.blank?
       @steps_near.each do |s_near|
         if s_near != step
-          step.push(advises: s_near._id.to_s)
+          if s_near.travel.user != step.travel.user
+            step.push(advises: s_near._id.to_s)
+          end
         end
       end
 		end 

@@ -35,6 +35,7 @@ class Travel
     end
   end
 
+
   # Budget methods
 
   def display_budget
@@ -81,6 +82,13 @@ class Travel
     else
       diff = self.time_for_travel - self.total_step_time
       return diff
+    end
+  end
+  
+  # is first step ?
+  def is_first_step?
+    if self.steps.count < 1
+      return true
     end
   end
 

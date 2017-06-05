@@ -14,12 +14,14 @@
     <label> Décrivez votre étape </label>
     <%= f.text_area :step_description, class: 'form-control', placeholder: 'What you will do during the step' %>
 	<br>
+	<% if !@travel.is_first_step? %>
 	<i class="ion-android-walk"></i> &nbsp; <label class="checkbox-inline"><%= f.check_box :foot %>À pied&nbsp; </label>
 	<i class="ion-android-bicycle"></i> &nbsp; <label class="checkbox-inline"><%= f.check_box :cycle %>Vélo/Moto&nbsp; </label>
 	<i class="ion-android-car"></i> &nbsp; <label class="checkbox-inline"><%= f.check_box :car %>Voiture&nbsp; </label>
 	<i class="ion-android-subway"></i> &nbsp; <label class="checkbox-inline"><%= f.check_box :train %>&nbsp; Train/Bus</label>
 	<i class="ion-android-boat"></i> &nbsp; <label class="checkbox-inline"><%= f.check_box :boat %>&nbsp; Bateau</label>
 	<i class="ion-plane"></i> &nbsp; <label class="checkbox-inline"><%= f.check_box :plane %> &nbsp; Avion</label>
-    <br>
+    <% end %>
+	<br>
     <%= f.submit 'Créer', class: 'Roadin-button Roadin-button--state-cherry' %>
 <% end %>

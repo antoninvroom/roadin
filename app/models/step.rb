@@ -43,6 +43,7 @@ class Step
   def step_name
     return "Step - #{self.place}"
   end
+  
 
   def step_duration
     if self.time_to_stay < 30

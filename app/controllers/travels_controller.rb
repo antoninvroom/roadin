@@ -114,6 +114,28 @@ class TravelsController < ApplicationController
     end
     render json: @friends
   end
+  
+  def edit
+    @travel = Travel.find(params[:id])
+  end
+  
+  def update
+    @travel = Travel.find(params[:id])
+    if @travel.update(travel_params)
+      puts 'step successfully updated'
+      redirect_to user_path(current_user)
+    else
+      puts 'oh god ! Something went wrong !'
+      puts @travel.errors.full_messages
+      render :edit
+    end
+  end
+  
+  def destroy
+    @travel = Travel.find(params[:id])
+    @travel.destroy
+    redirect_to user_path(current_user)
+  end
 
   private
   def travel_params

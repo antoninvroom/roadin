@@ -35,6 +35,8 @@ class StepsController < ApplicationController
 
   def create
     @step = @travel.steps.create!(step_params)
+    #Rake::Task['delete_advises'].invoke
+    #Rake::Task['geocode_step_near'].invoke
     redirect_to @travel, :notice => 'step created!'
   end
 

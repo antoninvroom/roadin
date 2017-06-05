@@ -32,11 +32,15 @@
           <div class="Roadin-user--travels col-md-3">
             <h4> <%= travel.title %> </h4>
             <p> <%= travel.description %> </p>
-            <span class="Roadin-label Roadin-label--cherry"> <%= travel.steps.count if travel.steps.count > 0 %> step<% if travel.steps.count > 1 %>s<% end %></span>
-            <br>
+            <span class="Roadin-label Roadin-label--cherry"> <%= travel.steps.count if travel.steps.count > 0 %> step<% if travel.steps.count > 1 %>s<% end %></span>&nbsp; 
+			
             <% travel.steps.each do |step| %>
               <%= step.country.emoji_flag %>
             <% end %>
+            <br>
+			<br>
+            <%= link_to 'Supprimer', travel_path(travel), method: :delete, data: {confirm: 'Are you sure?'}, class: 'Roadin-button-small Roadin-button-small--state-blue' %>
+			<%= link_to 'Éditer', edit_travel_path(travel), class: 'Roadin-button-small Roadin-button-small--state-blue' %>
           </div>
         <% end %>
       <% end %>

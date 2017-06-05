@@ -29,9 +29,11 @@
   background-color: #f8f8f8;
   padding: 30px;
   border-radius: 10px;
-  color: rgb(32, 32, 32);
   &:hover {
     background-color: darken(#f8f8f8, 2%);
+  }
+  a {
+	  color: rgb(32, 32, 32);
   }
 }
 

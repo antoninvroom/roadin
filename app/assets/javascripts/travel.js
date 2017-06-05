@@ -107,7 +107,8 @@ $(document).ready(function() {
                   var to = data.geojson[i + 1];
 				  console.log(to);
                   if(i != last) {
-					  if(to.properties.plane != true) {
+                    // si beug, supprimer la condition boat
+					  if(to.properties.plane != true && to.properties.boat != true) {
 	                      apiCall(
 	                        from.geometry.coordinates[0], 
 	                        from.geometry.coordinates[1], 
@@ -126,7 +127,7 @@ $(document).ready(function() {
 					  	)
 					  }
                   } else {
-					  if(from.properties.plane != true) {
+					  if(from.properties.plane != true && to.properties.boat != true) {
 	                      apiCall(
 	                        from.geometry.coordinates[0], 
 	                        from.geometry.coordinates[1], 

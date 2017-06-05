@@ -47,6 +47,11 @@ class TravelsController < ApplicationController
                 toolbox: toolbox_url,
                 desc: step.step_description,
                 plane: step.plane,
+                foot: step.foot,
+                car: step.car,
+                cycle: step.cycle,
+                train: step.train,
+                boat: step.boat,
                 'marker-color': '#ff7e5f',
                 'marker-size': 'large',
                 'marker-symbol': 'roadin-icon-01-01'

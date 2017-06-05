@@ -7,6 +7,11 @@ class Step
   field :place, type: String
   field :country, type: ISO3166::Country
   field :plane, type: Boolean, default: false
+  field :car, type: Boolean, default: false
+  field :foot, type: Boolean, default: false
+  field :train, type: Boolean, default: false
+  field :cycle, type: Boolean, default: false
+  field :boat, type: Boolean, default: false
   field :time_to_stay, type: Integer
   field :step_description, type: String
   field :coordinates, :type => Array
